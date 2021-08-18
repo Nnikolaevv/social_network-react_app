@@ -1,0 +1,12 @@
+.header {
+    grid-area: h;
+    width: 100%;
+    height: 100px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 17%);
+    border: 1px solid #ececec;
+    background-color: #302c2c;
+}
+
+.header img {
+    width: 40px;
+}
