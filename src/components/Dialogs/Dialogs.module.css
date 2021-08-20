@@ -10,4 +10,6 @@
 
 .messages {
     padding: 10px;
+    display: grid;
+    grid-template-columns: 6fr 6fr;
 }
