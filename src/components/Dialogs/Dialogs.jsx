@@ -2,7 +2,7 @@ import React from "react";
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {sendMsgActionCreator, updateMsgTextActionCreator} from "../../redux/state";
+import {sendMsgActionCreator, updateMsgTextActionCreator} from "../../redux/dialogs-reducer";
 
 
 const Dialogs = (props) => {
@@ -40,7 +40,7 @@ const Dialogs = (props) => {
                            value={props.dialogsState.newMsgText}
                            onChange={updateMsgText} type="text"/>
                     <div>
-                        <button onClick={ sendMsg }>Send message</button>
+                        <button onClick={sendMsg}>Send message</button>
                     </div>
                 </div>
 
