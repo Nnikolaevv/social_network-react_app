@@ -1,3 +1,4 @@
+import React from "react";
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
@@ -10,6 +11,19 @@ const Dialogs = (props) => {
     const incomeMessagesElement = props.dialogsState.incomeMessages.map(m => <Message message={m.message}/>);
     const outcomeMessagesElement = props.dialogsState.outcomeMessages.map(m => <Message message={m.message}/>);
 
+    const inputMessage = React.createRef()
+
+    const sendMsg = () => {
+        props.dispatch({type: 'SEND-MSG'});
+    }
+
+    const updateMsgText = () => {
+       const inputMsg = inputMessage.current.value
+        props.dispatch({type: 'UPDATE-NEW-MSG-TEXT',
+                        newMsgText: inputMsg
+        })
+    }
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -21,6 +35,14 @@ const Dialogs = (props) => {
                 </div>
                 <div className={s.outcomeMessages}>
                     {outcomeMessagesElement}
+                </div>
+                <div>
+                    <input ref={inputMessage}
+                           value={props.dialogsState.newMsgText}
+                           onChange={updateMsgText} type="text"/>
+                    <div>
+                        <button onClick={ sendMsg }>Send message</button>
+                    </div>
                 </div>
 
             </div>
