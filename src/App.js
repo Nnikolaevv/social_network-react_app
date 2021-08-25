@@ -7,22 +7,20 @@ import { Route} from 'react-router-dom'
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 const App = (props) => {
-
     return (
             <div className={"app-wrapper"}>
                 <Header/>
-                <Navbar state={props.state}/>
+                <Navbar store={props.store}/>
                 <div className={'app-wrapper-content'}>
                     <Route path={'/profile'}>
-                        <Profile profileState={props.state.profilePage}
-                                 dispatch={props.dispatch}/>
+                        <Profile store={props.store}/>
                     </Route>
                     <Route path={'/dialogs'}>
-                        <Dialogs dialogsState={props.state.dialogsPage}
-                                 dispatch={props.dispatch}/>
+                        <DialogsContainer store={props.store}/>
                     </Route>
                     <Route path={'/news'}>
                         <News/>

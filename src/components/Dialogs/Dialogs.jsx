@@ -2,25 +2,32 @@ import React from "react";
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {sendMsgActionCreator, updateMsgTextActionCreator} from "../../redux/dialogs-reducer";
+
 
 
 const Dialogs = (props) => {
-    const dialogsElement = props.dialogsState.dialogs.map(d => <DialogItem name={d.name}
-                                                                           id={d.id}
-                                                                           avatarImg={d.avatarImg}/>);
-    const incomeMessagesElement = props.dialogsState.incomeMessages.map(m => <Message message={m.message}/>);
-    const outcomeMessagesElement = props.dialogsState.outcomeMessages.map(m => <Message message={m.message}/>);
+    const dialogs = props.dialogs;
+    const newMsgText = props.newMsgText
+    const incomeMessages = props.incomeMessages;
+    const outcomeMessages = props.outcomeMessages;
+    const sendMsgFunc = props.sendMsg;
+    const updateMsgTextFunc = props.updateMsgText
+
+    const dialogsElement = dialogs.map(d => <DialogItem name={d.name}
+                                                        id={d.id}
+                                                        avatarImg={d.avatarImg}/>);
+    const incomeMessagesElement = incomeMessages.map(m => <Message message={m.message}/>);
+    const outcomeMessagesElement = outcomeMessages.map(m => <Message message={m.message}/>);
 
     const inputMessage = React.createRef()
 
     const sendMsg = () => {
-        props.dispatch(sendMsgActionCreator());
+        sendMsgFunc();
     }
 
     const updateMsgText = () => {
-       const inputMsg = inputMessage.current.value
-        props.dispatch(updateMsgTextActionCreator(inputMsg))
+       const inputMsg = inputMessage.current.value;
+        updateMsgTextFunc(inputMsg);
     }
 
     return (
@@ -37,13 +44,13 @@ const Dialogs = (props) => {
                 </div>
                 <div>
                     <input ref={inputMessage}
-                           value={props.dialogsState.newMsgText}
-                           onChange={updateMsgText} type="text"/>
+                           value={newMsgText}
+                           onChange={updateMsgText} type="text"
+                           placeholder="Enter message"/>
                     <div>
                         <button onClick={sendMsg}>Send message</button>
                     </div>
                 </div>
-
             </div>
         </div>
     )
