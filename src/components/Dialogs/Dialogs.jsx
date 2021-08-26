@@ -14,10 +14,11 @@ const Dialogs = (props) => {
     const updateMsgTextFunc = props.updateMsgText
 
     const dialogsElement = dialogs.map(d => <DialogItem name={d.name}
+                                                        key={d.id}
                                                         id={d.id}
                                                         avatarImg={d.avatarImg}/>);
-    const incomeMessagesElement = incomeMessages.map(m => <Message message={m.message}/>);
-    const outcomeMessagesElement = outcomeMessages.map(m => <Message message={m.message}/>);
+    const incomeMessagesElement = incomeMessages.map(m => <Message message={m.message} key={m.id}/>);
+    const outcomeMessagesElement = outcomeMessages.map(m => <Message message={m.message} key={m.id}/>);
 
     const inputMessage = React.createRef()
 

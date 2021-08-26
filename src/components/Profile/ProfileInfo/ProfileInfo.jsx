@@ -4,7 +4,7 @@ function ProfileInfo() {
   return (
     <div className={'profileInfo'}>
       <div>
-        <img src="https://via.placeholder.com/1000x300"/>
+        <img src="https://via.placeholder.com/1000x150"/>
       </div>
       <div className={s.descriptionBlock}>
         ava + description

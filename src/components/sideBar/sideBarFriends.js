@@ -1,25 +1,25 @@
 import s from './sideBarFriends.module.css'
 
 const SideBarFriends = (props) => {
-    const friends = props.sideBarFriendsState.map(friend => {
+    const friends = props.friends
+    const friendsElements = friends.map(f => {
         return (
-            <div>
+            <div key={f.id}>
                 <div className={s.friendsAvatarImg}>
-                    <img src={friend.avatarImg} alt="img"/>
+                    <img src={f.avatarImg} alt="img"/>
                 </div>
                 <div className={s.friendName}>
-                    {friend.name}
+                    {f.name}
                 </div>
             </div>
         )
     })
 
     return (
-        <div className={s.friendsContainer}>
+        <div className={s.friendsWrapper}>
             <h3>Friends</h3>
         <div className={s.friends}>
-
-            { friends}
+            { friendsElements }
         </div>
         </div>
     )
