@@ -1,8 +1,10 @@
-import s from './Post.module.css'
+import React from "react";
+import './Post.module.css'
+
 
 const Post = (props) => {
   return (
-    <div className={s.item}>
+    <div className='item'>
       <img src="https://media.glamour.com/photos/5fa0610c53352ad65a54976c/master/pass/Ava%20Max%202.jpg" alt=""/>
       <div>{ props.message }</div>
       <div>

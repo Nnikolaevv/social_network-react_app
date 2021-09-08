@@ -1,17 +1,17 @@
 import React from "react";
-import s from './Dialogs.module.css'
+import './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import AddMessageFormRedux from "./AddMEssageForm/AddMessageForm";
+
 
 
 
 const Dialogs = (props) => {
     const dialogs = props.dialogs;
-    const newMsgText = props.newMsgText
     const incomeMessages = props.incomeMessages;
     const outcomeMessages = props.outcomeMessages;
-    const sendMsgFunc = props.sendMsg;
-    const updateMsgTextFunc = props.updateMsgText
+
 
     const dialogsElement = dialogs.map(d => <DialogItem name={d.name}
                                                         key={d.id}
@@ -20,41 +20,30 @@ const Dialogs = (props) => {
     const incomeMessagesElement = incomeMessages.map(m => <Message message={m.message} key={m.id}/>);
     const outcomeMessagesElement = outcomeMessages.map(m => <Message message={m.message} key={m.id}/>);
 
-    const inputMessage = React.createRef()
 
-    const sendMsg = () => {
-        sendMsgFunc();
-    }
 
-    const updateMsgText = () => {
-       const inputMsg = inputMessage.current.value;
-        updateMsgTextFunc(inputMsg);
+
+    const addNewMessage = (message) => {
+        props.sendMsg(message.newMessage)
     }
 
     return (
-        <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
+        <div className='dialogs'>
+            <div className='dialogsItems'>
                 {dialogsElement}
             </div>
-            <div className={s.messages}>
-                <div className={s.incomeMessages}>
+            <div className='messages'>
+                <div className='incomeMessages'>
                     {incomeMessagesElement}
                 </div>
-                <div className={s.outcomeMessages}>
+                <div className='outcomeMessages'>
                     {outcomeMessagesElement}
                 </div>
-                <div>
-                    <input ref={inputMessage}
-                           value={newMsgText}
-                           onChange={updateMsgText} type="text"
-                           placeholder="Enter message"/>
-                    <div>
-                        <button onClick={sendMsg}>Send message</button>
-                    </div>
-                </div>
+             <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
         </div>
     )
 };
+
 
 export default Dialogs

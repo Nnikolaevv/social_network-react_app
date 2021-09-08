@@ -1,14 +1,15 @@
-import s from './sideBarFriends.module.css'
+import React from "react";
+import './sideBarFriends.module.css'
 
 const SideBarFriends = (props) => {
     const friends = props.friends
     const friendsElements = friends.map(f => {
         return (
             <div key={f.id}>
-                <div className={s.friendsAvatarImg}>
+                <div className='friendsAvatarImg'>
                     <img src={f.avatarImg} alt="img"/>
                 </div>
-                <div className={s.friendName}>
+                <div className='friendName'>
                     {f.name}
                 </div>
             </div>
@@ -16,9 +17,9 @@ const SideBarFriends = (props) => {
     })
 
     return (
-        <div className={s.friendsWrapper}>
+        <div className='friendsWrapper'>
             <h3>Friends</h3>
-        <div className={s.friends}>
+        <div className='friends'>
             { friendsElements }
         </div>
         </div>

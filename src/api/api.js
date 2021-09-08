@@ -1,5 +1,5 @@
 import axios from "axios";
-import {logDOM} from "@testing-library/react";
+
 
 const baseURL = "https://social-network.samuraijs.com/api/1.0";
 const API_KEY = "8b769d71-9c3b-4a97-8b52-9dc0a31f7331"
@@ -17,6 +17,12 @@ export const authAPI = {
         return (
             instanceAxios.get('/auth/me')
                 .then(response => response.data)
+        )
+    },
+
+    login(data) {
+        return (
+            instanceAxios.post('/auth/login', data)
         )
     }
 }
@@ -51,7 +57,20 @@ export const profileAPI = {
             instanceAxios.get('/profile/' + userId)
                 .then(response => response.data)
         )
-    }
+    },
+
+    getStatus(userId) {
+        return (
+            instanceAxios.get('/profile/status/' + userId)
+                .then(response => response.data)
+        )
+    },
+
+    updateStatus(status) {
+        return (
+            instanceAxios.put('/profile/status', {status : status})
+        )
+    },
 
 }
 
