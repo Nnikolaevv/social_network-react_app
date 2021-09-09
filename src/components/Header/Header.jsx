@@ -1,6 +1,7 @@
 import React from "react";
 import './Header.module.css';
 import {NavLink} from "react-router-dom";
+import HeaderLoginInfo from "./HeaderLoginInfo";
 
 const Header = (props) => {
   return (
@@ -10,7 +11,7 @@ const Header = (props) => {
        </div>
 
         <div className='loginBlock'>
-            {props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink>}
+            {props.isAuth ? <HeaderLoginInfo {...props} /> : <NavLink to={'/login'}>Login</NavLink>}
         </div>
     </header>
   )

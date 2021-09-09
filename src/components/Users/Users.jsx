@@ -1,7 +1,6 @@
 import React from "react";
-import styles from './users.module.css'
+import './users.module.css'
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/api";
 import avatar from '../../assets/img/ava.jpg'
 
 
@@ -21,7 +20,7 @@ const Users = (props) => {
                                 <img
                                     src={u.photos.small != null ? u.photos.small : avatar}
                                     alt=""
-                                    className={styles.avaImg}/>
+                                    className='avaImg'/>
                             </NavLink>
 
                         </div>
@@ -55,7 +54,7 @@ const Users = (props) => {
                 {pages.map(p => {
                     return (
                         <span onClick={() => props.setPage(p)}
-                              className={props.currentPage === p && styles.selectedPage}> {p} </span>
+                              className={props.currentPage === p && 'selectedPage'}> {p} </span>
                     )
                 })}
             </div>

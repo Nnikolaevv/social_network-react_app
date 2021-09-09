@@ -2,9 +2,7 @@ import React from "react";
 import Login from "./Login";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {sendLoginData} from "../../redux/Reducers/auth-reducer";
-import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
-
+import {login} from "../../redux/Reducers/auth-reducer";
 
 class LoginContainer extends React.Component {
 
@@ -17,14 +15,14 @@ class LoginContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-    loginData: state.auth.loginData
+        isAuth: state.auth.isAuth,
+        errorMessages: state.auth.errorMessages
     }
 }
 
 
 export default compose(
-    connect(mapStateToProps, {sendLoginData}),
-    withAuthRedirect
+    connect(mapStateToProps, {login})
 )
 (LoginContainer)
 

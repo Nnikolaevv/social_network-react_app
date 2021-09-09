@@ -8,8 +8,6 @@ let initialState = {
     post: [
         {id: 1, message: 'Hello, how are you?', likeCount: 10},
         {id: 2, message: 'It\'s my first post', likeCount: 15},
-        {id: 3, message: 'Yo Yo', likeCount: 20},
-        {id: 4, message: 'buy', likeCount: 25},
     ],
     profile: null,
     status: ''
@@ -19,7 +17,7 @@ const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             const newPost = {
-                id: 5,
+                id: state.post.length + 1,
                 message: action.post,
                 likeCount: 0
             }
