@@ -1,8 +1,8 @@
 import {authAPI} from "../../api/api";
+import {stopSubmit} from "redux-form";
 
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 const SET_LOGOUT = 'SET_LOGOUT';
-const SET_ERROR_MESSAGE = 'SET_ERROR_MESSAGE'
 
 
 const initialState = {
@@ -10,7 +10,7 @@ const initialState = {
     email: null,
     login: null,
     isAuth: false,
-    errorMessage: [],
+
 }
 
 const authReducer = (state = initialState, action) => {
@@ -31,12 +31,6 @@ const authReducer = (state = initialState, action) => {
                 errorMessage: null,
             }
         }
-        case SET_ERROR_MESSAGE:
-            return {
-                ...state,
-                errorMessages: [...action.errorMessages]
-            }
-
         default:
             return state;
     }
@@ -44,11 +38,11 @@ const authReducer = (state = initialState, action) => {
 
 export const setAuthUserData = (userId, email, login) => ({type: SET_AUTH_USER_DATA, data: {userId, email, login}});
 export const setLogout = () => ({type: SET_LOGOUT})
-export const setErrorMessage = (errorMessages) => ({type: SET_ERROR_MESSAGE, errorMessages})
+
 
 export const getAuthUserData = () => {
     return (dispatch) => {
-        authAPI.authMe()
+       return authAPI.authMe()
             .then(data => {
                     if (data.resultCode === 0) {
                         let {id, email, login} = data.data
@@ -63,12 +57,10 @@ export const login = (email, password, rememberMe) => {
     return (dispatch) => {
         authAPI.login(email, password, rememberMe)
             .then(data => {
-                console.log(data)
                 if (data.resultCode === 0) {
                     dispatch(getAuthUserData())
-                }
-                if (data.resultCode === 1) {
-                    dispatch(setErrorMessage(data.messages))
+                } else {
+                    dispatch(stopSubmit('login', {_error: (data.messages || "some error")}))
                 }
             })
     }

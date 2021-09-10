@@ -10,39 +10,67 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/Login/LoginContainer";
+import {connect} from "react-redux";
+import {compose} from "redux";
+import {initial} from "./redux/Reducers/app-reduce";
+import Preloader from "./components/common/Preloader/Preloader";
 
 
-const App = (props) => {
-    return (
+class App extends React.Component {
+    componentDidMount() {
+        this.props.initial()
+    }
+
+    render() {
+        if (!this.props.isInit) return <Preloader/>
+
+        return (
             <div className={"app-wrapper"}>
                 <HeaderContainer/>
-                <Navbar />
+                <Navbar/>
                 <div className={'app-wrapper-content'}>
+
                     <Route path={'/profile/:userId?'}>
-                        <ProfileContainer />
+                        <ProfileContainer/>
                     </Route>
+
                     <Route path={'/dialogs'}>
-                        <DialogsContainer />
+                        <DialogsContainer/>
                     </Route>
+
                     <Route path={'/users'}>
-                        <UsersContainer />
+                        <UsersContainer/>
                     </Route>
+
                     <Route path={'/login'}>
-                        <LoginContainer />
+                        <LoginContainer/>
                     </Route>
+
                     <Route path={'/news'}>
                         <News/>
                     </Route>
+
                     <Route path={'/music'}>
                         <Music/>
                     </Route>
+
                     <Route path={'/settings'}>
                         <Settings/>
                     </Route>
                 </div>
             </div>
-    );
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        isInit: state.app.isInit
+    }
+
+}
+
+export default compose(
+    connect(mapStateToProps, {initial})
+    )(App)
 

@@ -23,13 +23,6 @@ const LoginForm = (props) => {
                            type="password"
                            placeholder={'Password'}/>
                 </div>
-                {props.errorMessages ? props.errorMessages.map(m => {
-                    return (
-                        <div>
-                            <span>{m}</span>
-                        </div>
-                    )
-                }) : null}
                 <div>
                     <Field
                         component={Input}
@@ -38,6 +31,11 @@ const LoginForm = (props) => {
                         placeholder={'Remember me'}/>
                     <span>Remember me</span>
                 </div>
+                {props.error &&
+                <div className={'formSummaryError'}>
+                    <span>{props.error}</span>
+                </div>
+                }
                 <div>
                     <button>Login</button>
                 </div>
