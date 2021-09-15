@@ -5,17 +5,24 @@ import {
     follow,
     unfollow,
     toggleFollowingProgress,
-    getUsers,
+    requestUsers,
     changePage,
 } from "../../redux/Reducers/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUserCount, getUsersSuper
+} from "../../redux/Selectors/users-selector";
 
 
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-       this.props.getUsers(this.props.currentPage, this.props.pageSize)
+       this.props.getUsersList(this.props.currentPage, this.props.pageSize)
     };
 
     setPage = (numberPage) => {
@@ -36,6 +43,7 @@ class UsersContainer extends React.Component {
                        unfollow={this.props.unfollow}
                        followingInProgress={this.props.followingInProgress}
                        toggleFollowingInProgress={this.props.toggleFollowingProgress}
+                       isAuth={this.props.isAuth}
                 />
             </div>
             
@@ -46,12 +54,13 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUserCount: state.usersPage.totalUserCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
+        users: getUsersSuper(state),
+        pageSize: getPageSize(state),
+        totalUserCount: getTotalUserCount(state) ,
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state),
+        isAuth: state.auth.isAuth
     }
 }
 
@@ -60,7 +69,7 @@ export default compose(
         follow,
         unfollow,
         toggleFollowingProgress,
-        getUsers,
+        getUsersList: requestUsers,
         changePage,
 
     }),
