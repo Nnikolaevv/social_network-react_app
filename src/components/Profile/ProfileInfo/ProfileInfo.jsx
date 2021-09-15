@@ -3,6 +3,7 @@ import './ProfileInfo.module.css'
 import Preloader from "../../common/Preloader/Preloader";
 import avatar from '../../../assets/img/ava.jpg'
 import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 
 function ProfileInfo(props) {
@@ -12,12 +13,9 @@ function ProfileInfo(props) {
 
   return (
     <div className='profileInfo'>
-      {/*<div>*/}
-      {/*  <img src="https://via.placeholder.com/1000x150"/>*/}
-      {/*</div>*/}
       <div className='descriptionBlock'>
           <div><img src={props.profile.photos.large || avatar } alt=""/></div>
-          <div><ProfileStatus {...props} /></div>
+          <div><ProfileStatusWithHooks {...props} /></div>
         ava + description
       </div>
     </div>
