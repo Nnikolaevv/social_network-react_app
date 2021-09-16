@@ -28,6 +28,7 @@ const LoginForm = (props) => {
                         component={Input}
                         name={'rememberMe'}
                         type="checkbox"
+                        checked={true}
                         placeholder={'Remember me'}/>
                     <span>Remember me</span>
                 </div>
@@ -39,7 +40,6 @@ const LoginForm = (props) => {
                 <div>
                     <button>Login</button>
                 </div>
-
             </form>
         </div>
     )

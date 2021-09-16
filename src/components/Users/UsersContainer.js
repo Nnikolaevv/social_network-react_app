@@ -34,16 +34,8 @@ class UsersContainer extends React.Component {
         return (
             <div>
                 {this.props.isFetching ? <Preloader /> : null}
-                <Users users={this.props.users}
-                       totalUserCount={this.props.totalUserCount}
-                       pageSize={this.props.pageSize}
-                       currentPage={this.props.currentPage}
+                <Users {...this.props}
                        setPage={this.setPage}
-                       follow={this.props.follow}
-                       unfollow={this.props.unfollow}
-                       followingInProgress={this.props.followingInProgress}
-                       toggleFollowingInProgress={this.props.toggleFollowingProgress}
-                       isAuth={this.props.isAuth}
                 />
             </div>
             
@@ -71,7 +63,6 @@ export default compose(
         toggleFollowingProgress,
         getUsersList: requestUsers,
         changePage,
-
     }),
     )(UsersContainer)
 

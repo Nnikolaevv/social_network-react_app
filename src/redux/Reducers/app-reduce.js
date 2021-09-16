@@ -1,9 +1,9 @@
 import {getAuthUserData} from "./auth-reducer";
 
-const SET_INITIAL_APP = 'SET_INITIAL_APP';
+const SET_INITIAL_APP = 'app/SET_INITIAL_APP';
 
 const initialState = {
-   isInit: false
+    isInit: false
 }
 
 const appReducer = (state = initialState, action) => {
@@ -20,21 +20,15 @@ const appReducer = (state = initialState, action) => {
 
 export const setInitialApp = () => ({type: SET_INITIAL_APP});
 
+export const initial = () => (dispatch) => {
+    const loadingAuthUserData = dispatch(getAuthUserData());
 
-
-export const initial = () => {
-    return (dispatch) => {
-      let loadingAuthUserData = dispatch(getAuthUserData());
-
-
-      Promise.all([loadingAuthUserData])
-          .then(() => {
-              dispatch(setInitialApp())
-          }
+    Promise.all([loadingAuthUserData])
+        .then(() => {
+                dispatch(setInitialApp())
+            }
         );
-    }
 }
-
 
 
 export default appReducer;

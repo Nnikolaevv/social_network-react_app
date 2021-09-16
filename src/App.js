@@ -67,7 +67,6 @@ const mapStateToProps = (state) => {
     return {
         isInit: state.app.isInit
     }
-
 }
 
 export default compose(
