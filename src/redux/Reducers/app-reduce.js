@@ -30,7 +30,6 @@ export const initial = () => {
       Promise.all([loadingAuthUserData])
           .then(() => {
               dispatch(setInitialApp())
-              console.log(loadingAuthUserData)
           }
         );
     }
