@@ -10,8 +10,8 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'users/TOGGLE_IS_FOLLOWING_PROGRESS';
 
 const initialState = {
     users: [],
-    pageSize: 3,
-    totalUserCount: 0,
+    pageSize: 5,
+    totalUserCount: 20,
     currentPage: 1,
     isFetching: false,
     followingInProgress: []
