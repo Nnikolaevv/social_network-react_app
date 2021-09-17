@@ -10,11 +10,13 @@ import {Provider} from "react-redux";
 
 ReactDOM.render(
     <React.StrictMode>
-        <HashRouter >
+        {/*<BrowserRouter basename={process.env.PUBLIC_URL}>*/}
+        <HashRouter>
             <Provider store={store}>
                 <App/>
             </Provider>
         </HashRouter>
+        {/*</BrowserRouter>*/}
     </React.StrictMode>,
     document.getElementById('root')
 );
