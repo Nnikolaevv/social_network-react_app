@@ -15,7 +15,13 @@ const Login = (props) => {
 
     return (
        <div>
-           <h1>login</h1>
+           <h1>Login page</h1>
+           <div>
+               <h2>For tests use: <br />
+                   Email: free@samuraijs.com <br />
+                   Password: free
+               </h2>
+           </div>
            <LoginReduxForm onSubmit={onSubmit} {...props}/>
        </div>
     )
