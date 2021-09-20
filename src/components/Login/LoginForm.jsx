@@ -28,8 +28,7 @@ const LoginForm = (props) => {
                         component={Input}
                         name={'rememberMe'}
                         type="checkbox"
-                        checked={true}
-                        placeholder={'Remember me'}/>
+                        checked={true}/>
                     <span>Remember me</span>
                 </div>
                 {props.error &&

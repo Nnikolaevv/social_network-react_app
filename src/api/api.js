@@ -90,6 +90,12 @@ export const profileAPI = {
                 }
             })
         )
+    },
+
+    sendProfile(data) {
+        return (
+            instanceAxios.put('/profile', data)
+        )
     }
 
 }
