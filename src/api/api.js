@@ -80,6 +80,18 @@ export const profileAPI = {
         )
     },
 
+    uploadPhoto(file) {
+        const formData = new FormData();
+        formData.append('image', file)
+        return (
+            instanceAxios.put('/profile/photo', formData, {
+                headers: {
+                    'Content-Type' : 'multipart/form-data'
+                }
+            })
+        )
+    }
+
 }
 
 
