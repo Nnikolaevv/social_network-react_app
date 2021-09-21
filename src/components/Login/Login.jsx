@@ -5,8 +5,8 @@ import {Redirect} from "react-router-dom";
 
 
 const Login = (props) => {
-    const onSubmit = ({email, password, rememberMe}) => {
-        props.login(email, password, rememberMe)
+    const onSubmit = ({email, password, rememberMe, captcha}) => {
+        props.login(email, password, rememberMe, captcha)
     }
 
     if (props.isAuth) {

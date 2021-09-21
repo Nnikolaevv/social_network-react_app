@@ -16,7 +16,9 @@ class LoginContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
-        errorMessages: state.auth.errorMessages
+        errorMessages: state.auth.errorMessages,
+        isCaptcha: state.auth.isCaptcha,
+        urlCaptcha: state.auth.urlCaptcha
     }
 }
 
