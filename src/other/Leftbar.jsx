@@ -6,6 +6,8 @@ import Home from "@material-ui/icons/Home";
 const useStyles = makeStyles(theme => ({
     container: {
         height: '100vh',
+        position: 'sticky',
+        top: 0,
         paddingTop: theme.spacing(10),
         backgroundColor: theme.palette.primary.main,
         [theme.breakpoints.up('sm')]: {

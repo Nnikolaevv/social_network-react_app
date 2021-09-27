@@ -95,7 +95,7 @@ const Navbarr = (props) => {
                     <Badge badgeContent={2} color="secondary" className={classes.budge}>
                         <Notifications />
                     </Badge>
-                    <Avatar alt="Remy Sharp" src="" />
+                    <Avatar alt="Remy Sharp" src="https://v4.mui.com/static/images/avatar/6.jpg" />
                 </div>
             </Toolbar>
         </AppBar>

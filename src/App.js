@@ -18,6 +18,7 @@ import Navbarr from "./other/Navbar";
 import Leftbar from "./other/Leftbar";
 import Feed from "./other/Feed";
 import Rightbar from "./other/Rightbar";
+import Addd from "./other/Add";
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
 
 const useStyles = makeStyles(theme => ({
@@ -55,6 +56,7 @@ const App = (props) => {
                         <Rightbar/>
                     </Grid>
                 </Grid>
+                <Addd />
             </div>
             // <Grid container>
             //    <Grid item xs={12} md={12}><HeaderContainer/></Grid>
