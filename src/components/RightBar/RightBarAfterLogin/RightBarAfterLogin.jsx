@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const Rightbar = (props) => {
+const RightBarAfterLogin = (props) => {
     const classes = useStyles()
     return (
         <Container className={classes.container}>
@@ -29,7 +29,7 @@ const Rightbar = (props) => {
                         gutterBottom>
                 Online Friends
             </Typography>
-            <AvatarGroup max={6} style={{marginBottom: 20}}>
+            <AvatarGroup max={5} style={{marginBottom: 20}}>
                 <Avatar alt="Remy Sharp" src="https://v4.mui.com/static/images/avatar/1.jpg"/>
                 <Avatar alt="Travis Howard" src="https://v4.mui.com/static/images/avatar/2.jpg"/>
                 <Avatar alt="Cindy Baker" src="https://v4.mui.com/static/images/avatar/3.jpg"/>
@@ -90,4 +90,4 @@ const Rightbar = (props) => {
     );
 };
 
-export default Rightbar
+export default RightBarAfterLogin

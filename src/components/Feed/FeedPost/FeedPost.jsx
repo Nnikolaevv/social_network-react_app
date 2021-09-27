@@ -23,15 +23,15 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const Postt = (props) => {
+const FeedPost = (props) => {
     const classes = useStyles()
     return (
         <Card className={classes.card}>
             <CardActionArea>
                 <CardMedia className={classes.media}
                            component="img"
-                           image="https://images.unsplash.com/photo-1632671899548-a671fab3633f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
-                           title="Contemplative Reptile"
+                           image="https://source.unsplash.com/random"
+                           title="img"
                 />
                 <CardContent>
                     <Typography gutterBottom variant='h5'>
@@ -51,4 +51,4 @@ const Postt = (props) => {
     )
 };
 
-export default Postt
+export default FeedPost
