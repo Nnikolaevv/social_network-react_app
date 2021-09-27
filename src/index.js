@@ -6,17 +6,22 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, HashRouter} from "react-router-dom";
 import store from "./redux/reduxStore";
 import {Provider} from "react-redux";
+import {theme} from "./theme";
+import { ThemeProvider} from "@material-ui/core";
 
 
 ReactDOM.render(
     <React.StrictMode>
-        {/*<BrowserRouter basename={process.env.PUBLIC_URL}>*/}
-        <HashRouter>
-            <Provider store={store}>
-                <App/>
-            </Provider>
-        </HashRouter>
-        {/*</BrowserRouter>*/}
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        {/*<HashRouter>*/}
+            <ThemeProvider theme={theme}>
+                <Provider store={store}>
+                    <App/>
+                </Provider>
+            </ThemeProvider>
+
+        {/*</HashRouter>*/}
+        </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
 );

@@ -1,18 +1,37 @@
 import React from "react";
-import './Header.module.css';
-import {NavLink} from "react-router-dom";
 import HeaderLoginInfo from "./HeaderLoginInfo";
-import HeaderLogo from "./HeaderLogo/HeaderLogo";
+import HeaderLogoutInfo from "./HeaderLogoutInfo";
+import {AppBar, Button, Container, IconButton, makeStyles, Toolbar} from "@material-ui/core";
+import Menu from '@material-ui/icons/Menu'
+
+
+const useStyles = makeStyles(theme => ({
+
+}))
 
 const Header = (props) => {
+    const style= useStyles()
     return (
-        <header className='header'>
-           <HeaderLogo />
-            <div className='loginBlock'>
-                {props.isAuth ? <HeaderLoginInfo {...props} /> : <NavLink to={'/login'}>Login</NavLink>}
-            </div>
-        </header>
-    )
+            <AppBar position={"fixed"}>
+                <Container>
+                    <Toolbar>
+                            <Button variant={"contained"}
+                                    size={"large"}
+                                    className={style.button}>Button</Button>
+                            <IconButton sx={{mr: "10px"}}
+                                    edge={"start"}
+                                    color={'inherit'}
+                                    aria-label={'menu'}>
+                            <Menu/>
+                        </IconButton>
+                        {props.isAuth
+                            ? <HeaderLoginInfo {...props}/>
+                            : <HeaderLogoutInfo/>
+                        }
+                    </Toolbar>
+                </Container>
+            </AppBar>
+    );
 };
 
 export default Header
