@@ -1,15 +1,26 @@
 import {createTheme} from "@material-ui/core";
-import {grey} from "@material-ui/core/colors";
+import {blue, grey} from "@material-ui/core/colors";
 
 export const theme = createTheme({
-    // palette: {
-    //     primary: {
-    //         main: grey[50],
-    //     },
-    // },
+    palette: {
+        primary: {
+            main: blue[500],
+            grey: grey[100],
+        },
+    },
     myButton: {
         backgroundColor: "red",
         color: "white",
         border: "1px solid black"
+    },
+    breakpoints: {
+        values: {
+            xs: 0,
+            xss: 400,
+            sm: 660,
+            md: 960,
+            lg: 1280,
+            xl: 1920,
+        },
     }
 })

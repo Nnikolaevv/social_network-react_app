@@ -1,7 +1,7 @@
 import React from "react";
 import {Container, makeStyles} from "@material-ui/core";
-
 import FeedPost from "./FeedPost/FeedPost";
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -11,10 +11,10 @@ const useStyles = makeStyles(theme => ({
 const Feed = (props) => {
     const classes = useStyles()
     return (
-        <Container>
+        <div className={classes.container}>
             <FeedPost/>
             <FeedPost/>
-        </Container>
+        </div>
     );
 };
 

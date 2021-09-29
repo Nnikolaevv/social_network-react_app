@@ -1,36 +1,36 @@
 import React, {useState} from "react";
-import './Paginator.module.css'
-import classNames from "classnames";
+import {Pagination} from "@material-ui/lab";
+import {makeStyles} from "@material-ui/core";
 
-const Paginator = ({totalItemsCount, pageSize, currentPage, setPage, portionSize = 10}) => {
+const useStyles = makeStyles((theme) => ({
+    container: {
+        '& > *': {
+            marginTop: theme.spacing(2),
+        },
+    },
+}));
+
+const Paginator = ({totalItemsCount, pageSize, setPage}) => {
+    const classes = useStyles()
+
     const pageCount = Math.ceil(totalItemsCount / pageSize);
-    let pages = [];
-    for (let i = 1; i <= pageCount; i++) {
-        pages.push(i)
-    }
-    const portionCount = Math.ceil(pageCount / portionSize);
-    const [portionNumber, setPortionNumber] = useState(1);
-    const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
-    const rightPortionPageNumber = portionNumber * portionSize
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const handleChange = (event, value) => {
+        setCurrentPage(value)
+        setPage(value);
+    };
 
     return (
-        <div className={'paginator'}>
-            { portionNumber > 1 &&
-            <button onClick={() => { setPortionNumber(portionNumber - 1)}}> Prev</button>}
-
-            {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-                .map(p => {
-                return (
-                    <span onClick={() => setPage(p)}
-                          className={classNames({['selectedPage'] : currentPage === p}, 'pageNumber')}
-                          key={p}>
-                        {p}</span>
-                )
-            })}
-
-            { portionCount > portionNumber   &&
-            <button onClick={() => { setPortionNumber(portionNumber + 1)}}> Next</button>}
+        <div className={classes.container}>
+            <Pagination count={pageCount}
+                        variant="outlined"
+                        shape="rounded"
+                        page={currentPage}
+                        onChange={handleChange}/>
         </div>
+
+
     )
 }
 

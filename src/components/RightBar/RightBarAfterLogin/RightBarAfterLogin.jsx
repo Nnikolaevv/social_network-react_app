@@ -1,30 +1,13 @@
 import React from "react";
-import {Avatar, Container, Divider, ImageList, ImageListItem, Link, makeStyles, Typography} from "@material-ui/core";
+import {Avatar, Divider, ImageList, ImageListItem, Link, makeStyles, Typography} from "@material-ui/core";
 import {AvatarGroup} from "@material-ui/lab";
 
 
-const useStyles = makeStyles(theme => ({
-    container: {
-        paddingTop: theme.spacing(10),
-        position: 'sticky',
-        top: 0,
-    },
-    title: {
-        fontSize: 16,
-        fontWeight: 500,
-        color: '#555',
-    },
-    link: {
-        marginRight: theme.spacing(2),
-        color: '#555',
-        fontSize: 16,
-    }
-}))
-
 const RightBarAfterLogin = (props) => {
-    const classes = useStyles()
+    const classes = props.classes
+
     return (
-        <Container className={classes.container}>
+        <React.Fragment>
             <Typography className={classes.title}
                         gutterBottom>
                 Online Friends
@@ -86,7 +69,7 @@ const RightBarAfterLogin = (props) => {
             <Link href="#" className={classes.link} variant={"body2"}>
                 Life
             </Link>
-        </Container>
+        </React.Fragment>
     );
 };
 

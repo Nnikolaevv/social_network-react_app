@@ -37,21 +37,27 @@ const HeaderLoginScreen = (props) => {
         setAnchorEl(null);
     };
 
+    const toDialogs = () => {
+        history.push('/dialogs')
+    }
+
 
     return (
         <div className={classes.icons}>
             <Search className={classes.searchButton} onClick={onSetOpenClick}/>
-            <Badge badgeContent={4} color="secondary" className={classes.budge}>
+            <Badge badgeContent={4} color="secondary" className={classes.budge} onClick={toDialogs}>
                 <Mail/>
             </Badge>
             <Badge badgeContent={2} color="secondary" className={classes.budge}>
                 <Notifications/>
             </Badge>
-            <Avatar alt="Remy Sharp"
+            <Avatar className={classes.avatar}
+                    alt="Remy Sharp"
                     src={''}
                     aria-controls="simple-menu"
                     aria-haspopup="true"
-                    onClick={handleClick}/>
+                    onClick={handleClick}
+            />
             <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}

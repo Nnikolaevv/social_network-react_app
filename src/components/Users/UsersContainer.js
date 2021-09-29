@@ -30,10 +30,11 @@ class UsersContainer extends React.Component {
 
     };
 
+
     render() {
         return (
             <div>
-                {this.props.isFetching ? <Preloader /> : null}
+                {(this.props.isFetching) ? <Preloader /> : null}
                 <Users {...this.props}
                        setPage={this.setPage}
                 />

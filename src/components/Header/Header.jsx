@@ -1,9 +1,10 @@
 import React, {useState} from "react";
-import {alpha, AppBar, makeStyles, Toolbar} from "@material-ui/core";
+import {alpha, AppBar, Container, makeStyles, Toolbar} from "@material-ui/core";
 import HeaderLoginScreen from "./HeaderLogin/HeaderLoginScreen";
 import HeaderLogoutScreen from "./HeaderLogout/HeaderLogoutScreen";
 import HeaderSearch from "./HeaderSearch/HeaderSearch";
 import HeaderLogo from "./HeaderLogo/HeaderLogo";
+
 
 const useStyles = makeStyles(theme => ({
     toolBar: {
@@ -30,10 +31,10 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: alpha(theme.palette.common.white, 0.25),
         },
         borderRadius: theme.shape.borderRadius,
-        width: '50%',
+        width: '60%',
         [theme.breakpoints.down('xs')]: {
             display: (props) => (props.open ? 'flex' : 'none'),
-            width: '70%',
+            justifyContent: 'space-between',
         },
     },
     searchIcons: {
@@ -50,7 +51,7 @@ const useStyles = makeStyles(theme => ({
         color: 'white',
     },
     cancel: {
-        marginRight: theme.spacing(1),
+        right: theme.spacing(1),
         [theme.breakpoints.up('sm')]: {
             display: 'none',
         }
@@ -58,10 +59,20 @@ const useStyles = makeStyles(theme => ({
     icons: {
         alignItems: "center",
         display: (props) => props.open ? 'none' : 'flex',
+
     },
     budge: {
         marginRight: theme.spacing(2),
+        '&:hover': {
+            marginBottom: theme.spacing(1)
+        },
     },
+    avatar: {
+        '&:hover': {
+            marginBottom: theme.spacing(1),
+            backgroundColor: alpha(theme.palette.common.white, 0.25),
+        }
+    }
 }))
 
 const Header = (props) => {
@@ -74,21 +85,22 @@ const Header = (props) => {
     }
 
     return (
-        <AppBar position={"fixed"}>
-            <Toolbar className={classes.toolBar}>
-                <HeaderLogo classes={classes} />
-                <HeaderSearch classes={classes} onSetOpenClick={onSetOpenClick}/>
-                {props.isAuth
-                    ? <HeaderLoginScreen
-                                    classes={classes}
-                                    onSetOpenClick={onSetOpenClick}
-                                    logout={props.logout}
-                                    avatar={props.photos}/>
-                    : <HeaderLogoutScreen />
-                }
-            </Toolbar>
-
-        </AppBar>
+            <AppBar position={"fixed"}>
+                <Container style={{padding: 0}}>
+                    <Toolbar className={classes.toolBar}>
+                        <HeaderLogo classes={classes} />
+                        <HeaderSearch classes={classes} onSetOpenClick={onSetOpenClick}/>
+                        {props.isAuth
+                            ? <HeaderLoginScreen
+                                classes={classes}
+                                onSetOpenClick={onSetOpenClick}
+                                logout={props.logout}
+                                avatar={props.photos}/>
+                            : <HeaderLogoutScreen />
+                        }
+                    </Toolbar>
+                </Container>
+            </AppBar>
     );
 };
 

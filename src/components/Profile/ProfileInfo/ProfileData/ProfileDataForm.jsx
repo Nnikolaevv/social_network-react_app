@@ -1,5 +1,4 @@
 import React from "react";
-import './../ProfileInfo.module.css'
 import {Field, reduxForm} from "redux-form";
 import {Input, Textarea} from "../../../common/FormsControls/FormsControls";
 

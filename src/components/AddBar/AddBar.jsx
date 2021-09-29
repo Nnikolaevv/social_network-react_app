@@ -44,12 +44,20 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(2)
     },
     item: {
-        marginBottom: theme.spacing(3)
+        marginBottom: theme.spacing(3),
+    },
+    TextField: {
+        width: '100%',
+        height: '100%',
+        [theme.breakpoints.down('xs')]: {
+            width: '50%',
+            height: '50%',
+        }
     }
 }))
 
 
-const Addd = (props) => {
+const AddBar = (props) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false)
     const [openAlert, setOpenAlert] = useState(false)
@@ -76,17 +84,17 @@ const Addd = (props) => {
                 <Container className={classes.container}>
                     <form className={classes.form} autoComplete='off'>
                         <div className={classes.item}>
-                            <TextField id="standard-basic"
+                            <TextField className={classes.TextField}
+                                       id="standard-basic"
                                        label="Title"
                                        size="small"
-                                       style={{width: '100%'}}
                             />
                         </div>
                         <div className={classes.item}>
-                            <TextField id="outlined-multiline-static"
+                            <TextField className={classes.TextField}
+                                       id="outlined-multiline-static"
                                        label="Description"
                                        size="small"
-                                       // style={{width: '100%'}}
                                        multiline
                                        rows={4}
                                        defaultValue="Tell your story.."
@@ -123,10 +131,12 @@ const Addd = (props) => {
                             <Button variant='outlined'
                                     color='primary'
                                     style={{marginRight: 20}}
-                                    onClick={() => {(
-                                        setOpenAlert(true),
-                                        setOpen(false)
-                                    )}}>
+                                    onClick={() => {
+                                        (
+                                            setOpenAlert(true),
+                                                setOpen(false)
+                                        )
+                                    }}>
                                 Create
                             </Button>
                             <Button variant='outlined'
@@ -150,4 +160,4 @@ const Addd = (props) => {
     );
 };
 
-export default Addd
+export default AddBar
