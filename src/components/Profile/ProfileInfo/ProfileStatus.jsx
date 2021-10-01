@@ -1,61 +1,47 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {TextField} from "@material-ui/core";
 
-class ProfileStatus extends React.Component {
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.status !== this.props.status) {
-            this.setState({
-                status: this.props.status
-            })
-        }
-    }
+const ProfileStatusWithHooks = (props) => {
 
-    state = {
-        editMode: false,
-        status: this.props.status,
-    }
+  const [editMode, setEditMode] = useState(false);
+  const [status, setStatus] = useState(props.status);
 
-    activeEditMode = () => {
-        this.setState({
-            editMode: true,
-        })
-    }
+  useEffect(() => {
+      setStatus(props.status);
+  }, [props.status])
 
-    deActiveEditMode = () => {
-        this.setState({
-            editMode: false,
-        })
-        this.props.updateStatus(this.state.status)
-    }
+  const activeEditMode = () => {
+      setEditMode(true)
+  };
 
-    onChange = (e) => {
-        let value = e.target.value;
-        this.setState({
-            status: value,
-        })
+  const deActiveEditMode = () => {
+      setEditMode(false);
+      props.updateStatus(status)
+  };
 
-    }
+  const onChangeStatus = (e) => {
+      setStatus(e.target.value)
+  };
 
-    render() {
-        return (
+    return (
+        <div>
+            {!editMode &&
             <div>
-                {!this.state.editMode &&
-                <div>
-                    <span onDoubleClick={ this.activeEditMode }>{this.props.status || "NO STATUS"}</span>
-                </div>
-                }
-                {this.state.editMode &&
-                <div>
-                    <input onBlur={ this.deActiveEditMode }
-                           autoFocus={true}
-                           value={this.state.status}
-                           onChange={this.onChange}/>
-                </div>
-                }
+                <span onDoubleClick={activeEditMode}>{props.status || "NO STATUS"}</span>
             </div>
-        )
-    }
+            }
+            {editMode &&
+            <div>
+                <TextField onBlur={deActiveEditMode}
+                       autoFocus={true}
+                       value={status}
+                       onChange={onChangeStatus}/>
+            </div>
+            }
+        </div>
+    )
 
 
 }
 
-export default ProfileStatus;
+export default ProfileStatusWithHooks;
