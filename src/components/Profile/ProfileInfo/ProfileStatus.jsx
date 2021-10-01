@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {TextField} from "@material-ui/core";
+import {TextField, Typography} from "@material-ui/core";
 
-const ProfileStatusWithHooks = (props) => {
+const ProfileStatus = (props) => {
 
   const [editMode, setEditMode] = useState(false);
   const [status, setStatus] = useState(props.status);
@@ -27,7 +27,7 @@ const ProfileStatusWithHooks = (props) => {
         <div>
             {!editMode &&
             <div>
-                <span onDoubleClick={activeEditMode}>{props.status || "NO STATUS"}</span>
+                <Typography onDoubleClick={activeEditMode}>{props.status || "NO STATUS"}</Typography>
             </div>
             }
             {editMode &&
@@ -44,4 +44,4 @@ const ProfileStatusWithHooks = (props) => {
 
 }
 
-export default ProfileStatusWithHooks;
+export default ProfileStatus;

@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import avatar from '../../../assets/img/ava.jpg'
-import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+import ProfileStatus from "./ProfileStatus";
 import ProfileData from "./ProfileData/ProfileData";
 import ProfileDataFormRedux from "./ProfileData/ProfileDataForm";
+import {Button} from "@material-ui/core";
+import ProfileDataForm from "./ProfileData/ProfileDataForm";
 
 
 const ProfileInfo = (props) => {
@@ -14,7 +16,7 @@ const ProfileInfo = (props) => {
     const [editMode, setEditMode] = useState(false);
 
     const onClickEdit = () => {
-        setEditMode(true)
+        setEditMode(!editMode)
     }
 
     const editProfileInfoSave = (data) => {
@@ -33,13 +35,19 @@ const ProfileInfo = (props) => {
         <div className='profileInfo'>
             <div className='descriptionBlock'>
 
-                {editMode ? <ProfileDataFormRedux profile={props.profile}
-                                                  onSubmit={editProfileInfoSave}
-                                                  initialValues={props.profile}/>
-                          : <ProfileData profile={props.profile}
-                                         onClickEdit={onClickEdit}
-                                         isOwner={props.isOwner}/>}
-
+                {!editMode ? <ProfileData profile={props.profile}
+                                          onClickEdit={onClickEdit}
+                                          isOwner={props.isOwner}
+                                          classes={props.classes}/>
+                          :  <ProfileDataForm profile={props.profile}
+                                              onSubmit={editProfileInfoSave}
+                                              initialValues={props.profile}
+                                              onPhotoSelected={onPhotoSelected}/>
+                }
+                {props.isOwner &&
+                <Button variant="contained"
+                        color="primary"
+                        onClick={onClickEdit}>{!editMode ? 'Edit' : 'Save'}</Button>}
             </div>
         </div>
     )

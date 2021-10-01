@@ -8,13 +8,14 @@ import {
     Avatar, Button,
     Card, CardContent,
     Input,
-    makeStyles,
+    makeStyles, TextField,
     Typography
 } from "@material-ui/core";
-import ProfileStatusWithHooks from "./ProfileInfo/ProfileStatusWithHooks";
+import ProfileStatus from "./ProfileInfo/ProfileStatus";
 import avatar from "../../assets/img/ava.jpg";
 import Preloader from "../common/Preloader/Preloader";
 import Contact from "./ProfileInfo/Contact/Contact";
+import TextFieldsForm from "../common/FormsUI/MaterialUIForms/TextField/TextFieldsForm";
 
 
 const useStyles = makeStyles(theme => ({
@@ -43,7 +44,7 @@ const useStyles = makeStyles(theme => ({
         top: theme.spacing(14),
         border: '3px solid white'
     },
-    profileInfo: {
+    about: {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -76,46 +77,20 @@ const Profile = (props) => {
                 <img className={classes.avatar}
                      src={props.profile.photos.large || avatar}
                 />
-                {/*{props.isOwner && <Input type={'file'} onChange={onPhotoSelected} />}*/}
+
 
             </div>
-            <div className={classes.profileInfo}>
+            <div className={classes.about}>
                 <Typography variant='h4' className={classes.profileInfoName}>
                     {props.profile.fullName}
                 </Typography>
                 <Typography variant='span' className={classes.profileInfoDeck}>
-                    <ProfileStatusWithHooks {...props}/>
+                    <ProfileStatus {...props}/>
                 </Typography>
             </div>
 
-            <Card className={classes.about}>
-                <CardContent>
-                    <Typography className={classes.title} color="textPrimary" gutterBottom>
-                        <b>Full name</b> : {props.profile.fullName}
-                    </Typography>
-                    <Typography className={classes.title} color="textPrimary" gutterBottom>
-                        <b>Looking for a job</b> : {props.profile.lookingForAJob ? 'yes' : 'no'}
-                    </Typography>
-                    <Typography className={classes.title} color="textPrimary" gutterBottom>
-                        <b>About me</b>: {props.profile.aboutMe}
-                    </Typography>
+            <ProfileInfo {...props} classes={classes}/>
 
-                </CardContent>
-                <CardContent>
-                    <Typography className={classes.title} color="textPrimary" gutterBottom>
-                        <b>Contacts</b>: {Object.keys(props.profile.contacts).map(key => {
-                        return  <Contact key={key}
-                                         contactTitle={key}
-                                         contactValue={props.profile.contacts[key]}
-                        />
-                    })}
-                    </Typography>
-                </CardContent>
-
-                {props.isOwner &&  <Button variant="contained" color="primary"onClick={props.onClickEdit}>Edit</Button>}
-
-            </Card>
-            {/**/}
             {/*<MyPostsContainer/>*/}
         </div>
 

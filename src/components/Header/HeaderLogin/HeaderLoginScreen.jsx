@@ -38,7 +38,7 @@ const HeaderLoginScreen = (props) => {
     };
 
     const toDialogs = () => {
-        history.push('/dialogs')
+        history.push('/dialogslist')
     }
 
 

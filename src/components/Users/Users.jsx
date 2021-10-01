@@ -2,6 +2,7 @@ import React from "react";
 import Paginator from "../common/Paginator/Paginator";
 import UserCard from "./UserCard/UserCard";
 import {makeStyles, Typography} from "@material-ui/core";
+import {Formik} from 'formik';
 
 
 const useStyles = makeStyles(theme => ({
@@ -50,18 +51,20 @@ const Users = (props) => {
     return (
         <div className={classes.container}>
             <Typography className={classes.userHeader}
+                        component='span'
+                        variant='body1'
                         gutterBottom>
                 USERS LIST
             </Typography>
             {props.users.map(u => (
-                <UserCard key={u.id}
-                          user={u}
-                          isAuth={props.isAuth}
-                          followingInProgress={props.followingInProgress}
-                          follow={props.follow}
-                          unfollow={props.unfollow}
-                          classes={classes}/>
-            )
+                    <UserCard key={u.id}
+                              user={u}
+                              isAuth={props.isAuth}
+                              followingInProgress={props.followingInProgress}
+                              follow={props.follow}
+                              unfollow={props.unfollow}
+                              classes={classes}/>
+                )
             )}
 
             <Paginator currentPage={props.currentPage}
@@ -74,3 +77,6 @@ const Users = (props) => {
 
 
 export default Users;
+
+
+

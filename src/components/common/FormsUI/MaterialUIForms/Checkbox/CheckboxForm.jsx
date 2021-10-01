@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import {useField, useFormikContext} from 'formik';
 
-const CheckboxFormikMUI = ({name, label, legend, ...otherProps}) => {
+const CheckboxForm = ({name, label, legend, ...otherProps}) => {
     const { setFieldValue } = useFormikContext();
     const [field, metaData] = useField(name);
 
@@ -19,10 +19,10 @@ const CheckboxFormikMUI = ({name, label, legend, ...otherProps}) => {
 
     const configCheckbox = {
         ...field,
-        ...otherProps,
         onChange: handleChange,
         fullWidth: true,
         variant: 'outlined',
+        ...otherProps,
     }
 
     const configFormControl = {};
@@ -44,4 +44,4 @@ const CheckboxFormikMUI = ({name, label, legend, ...otherProps}) => {
 }
 
 
-export default CheckboxFormikMUI
+export default CheckboxForm

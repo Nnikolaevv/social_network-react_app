@@ -2,8 +2,8 @@ import React from 'react';
 import {Button} from "@material-ui/core";
 import {useFormikContext} from 'formik';
 
-const SubmitButton = ({text, ...otherProps}) => {
-    const { submitForm } = useFormikContext();
+const ButtonSubmit = ({children, ...otherProps}) => {
+    const {submitForm} = useFormikContext();
 
     const handleSubmit = () => {
         submitForm()
@@ -14,6 +14,7 @@ const SubmitButton = ({text, ...otherProps}) => {
         color: 'primary',
         fullWidth: true,
         onClick: handleSubmit,
+        ...otherProps,
     }
     // if (metaData && metaData.touched && metaData.error) {
     //     configTextField.error = true;
@@ -21,11 +22,11 @@ const SubmitButton = ({text, ...otherProps}) => {
     // }
 
     return (
-        <Button {...configTextField} >
-            {text}
+        <Button {...configButton} >
+            {children}
         </Button>
     )
 }
 
 
-export default SubmitButton
+export default ButtonSubmit

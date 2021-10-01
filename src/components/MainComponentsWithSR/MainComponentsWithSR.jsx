@@ -28,7 +28,7 @@ const MainComponentsWithSR = (props) => {
                         <ProfileContainer/>
                     </Route>
 
-                    <Route path={'/dialogs'}>
+                    <Route path={'/dialogslist'}>
                         <React.Suspense fallback={<Preloader />}>
                             <DialogsContainer/>
                         </React.Suspense>

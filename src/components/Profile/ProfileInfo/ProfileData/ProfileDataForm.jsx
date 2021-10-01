@@ -1,61 +1,84 @@
 import React from "react";
-import {Field, reduxForm} from "redux-form";
-import {Input, Textarea} from "../../../common/FormsControls/FormsControls";
+import {Formik, Form} from "formik";
+import TextFieldsForm from "../../../common/FormsUI/MaterialUIForms/TextField/TextFieldsForm";
+import {Button, Grid, TextField} from "@material-ui/core";
 
 
 const ProfileDataForm = (props) => {
+
+    const INITIAL_FORM_STATE = {
+        fullName: props.initialValues.fullName,
+        lockingForAJob: props.initialValues.lockingForAJob,
+        lookingForAJobDescription: props.initialValues.lookingForAJobDescription,
+        aboutMe: props.initialValues.aboutMe,
+        contacts: {...props.initialValues.contacts},
+    }
+
+
+    const onSubmit = () => {
+
+    }
+
     return (
-        <form onSubmit={props.handleSubmit}>
+
+        <div>
             {props.error &&
             <div className={'formSummaryError'}>
                 <span>{props.error}</span>
             </div>}
-             <button >Submit</button>
-            <div>
-                <b>Full name</b> : <Field component={Input}
-                                          name={'fullName'}
-                                          type="text"
-                                          placeholder={'Full name'}/>
-            </div>
-            <div>
-                <b>Looking for a job</b> : <Field component={Input}
-                                                  name={'lockingForAJob'}
-                                                  type="checkbox"
-                                                  checked={true}/>
-                                                <span>Yes</span>
 
-            </div>
-            <div>
-                <b>Job description</b> : <Field component={Textarea}
-                                                name={'lookingForAJobDescription'}
-                                                type="text"
-                                                placeholder={'My professional skills'}
-            />
-            </div>
-            <div>
-                <b>About me</b>: <Field component={Textarea}
-                                        name={'aboutMe'}
-                                        type="text"
-                                        placeholder={'aboutMe'}/>
-            </div>
-            <div>
-                <b>Contacts</b>: {Object.keys(props.profile.contacts).map(key => {
-                return  (
-                    <div className='contact' key={key}>
-                        {key}: <Field component={Input}
-                                      name={'contacts.' + key}
-                                      type="text"
-                                      placeholder={key}
-                    />
-                    </div>
-                )
-            })}
-            </div>
-        </form>
+            <Formik initialValues={{
+                ...INITIAL_FORM_STATE
+            }}
+                    onSubmit={onSubmit}>
+                <Form>
+                    <Grid container spacing={2}>
+
+                        <Grid item xs={8}>
+                            <TextField name='file'
+                                       type={'file'}
+                                       variant='outlined'
+                                       onChange={props.onPhotoSelected} />
+                        </Grid>
+
+                        <Grid item xs={8}>
+                            <TextFieldsForm name='fullName'
+                                            label='Full name'/>
+                        </Grid>
+                        <Grid item xs={8}>
+                            <TextFieldsForm name='lockingForAJob'
+                                            label='Locking for a job'/>
+                        </Grid>
+                        <Grid item xs={8}>
+                            <TextFieldsForm as='textarea'
+                                            name='lookingForAJobDescription'
+                                            label='Full name'/>
+                        </Grid>
+                        <Grid item xs={8}>
+                            <TextFieldsForm as='textarea'
+                                            name='aboutMe'
+                                            label='About me'/>
+                        </Grid>
+
+
+                        {Object.keys(props.profile.contacts).map(key => {
+                            return  (
+                                <Grid item>
+                                      <TextFieldsForm key={key}
+                                                      name={key}
+                                                      label={key}/>
+
+                                </Grid>
+                            )})}
+                    </Grid>
+                </Form>
+            </Formik>
+    </div>
+
+
 
     )
 }
 
-const ProfileDataFormRedux = reduxForm({form: "ProfileDataForm"})(ProfileDataForm)
 
-export default ProfileDataFormRedux
+export default ProfileDataForm

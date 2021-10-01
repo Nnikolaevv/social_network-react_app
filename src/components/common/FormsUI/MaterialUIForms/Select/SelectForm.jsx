@@ -13,11 +13,11 @@ const CheckboxFormikMUI = ({name, options, ...otherProps}) => {
 
     const configSelect = {
         ...field,
-        ...otherProps,
         select: true,
         variant: 'outlined',
         fullWidth: true,
-        onChange: handleChange
+        onChange: handleChange,
+        ...otherProps,
 
     }
     if (metaData && metaData.touched && metaData.error) {

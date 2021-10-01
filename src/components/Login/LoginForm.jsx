@@ -1,60 +1,132 @@
-import React from "react";
-import {Field, reduxForm} from "redux-form";
-import {Input} from "../common/FormsControls/FormsControls";
-import {required} from "../../helpers/validators/validators";
+import React, {useEffect} from "react";
+import {Formik, Form, withFormik} from "formik";
+import * as Yup from 'yup';
+import {Card, CardActionArea, CardContent, CardMedia, Grid, Typography} from "@material-ui/core";
+import CheckboxForm from "../common/FormsUI/MaterialUIForms/Checkbox/CheckboxForm";
+import TextFieldsForm from "../common/FormsUI/MaterialUIForms/TextField/TextFieldsForm";
+import ButtonSubmit from "../common/FormsUI/MaterialUIForms/ButtonSubmit/ButtonSubmit";
+
+
+const INITIAL_FORM_STATE = {
+    email: '',
+    password: '',
+    rememberMe: false,
+    captcha: '',
+}
+
+const FORM_VALIDATION = Yup.object().shape({
+    email: Yup
+        .string('Enter your email')
+        .email('Enter a valid email')
+        .required('Email is required'),
+    password: Yup
+        .string('Enter your password')
+        .min(8, 'Password should be of minimum 8 characters length')
+        .required('Password is required'),
+    // captcha: Yup
+    //     .string
+    //     .required('Enter captcha'),
+});
+
 
 
 const LoginForm = (props) => {
+
+    const onSubmit  = ({email, password, rememberMe, captcha}, {  setErrors }) => {
+        props.login(email, password, rememberMe, captcha)
+            .then(e => {
+                props.error && setErrors({ password: props.error || 'Wrong pass'})
+            }
+        )
+    }
+
+    // const validateCaptcha = (value) => {
+    //     let error;
+    //     if (!value) {
+    //         error = 'Required Captcha';
+    //     }
+    //     return error;
+    // }
+
+
+
     return (
         <div>
-            <form onSubmit={props.handleSubmit}>
-                <div>
-                    <Field component={Input}
-                           name={'email'}
-                           validate={[required]}
-                           type="text"
-                           placeholder={'Login'}
-                    />
-                </div>
-                <div>
-                    <Field component={Input}
-                           name={'password'}
-                           validate={[required]}
-                           type="password"
-                           placeholder={'Password'}/>
-                </div>
-                <div>
-                    <Field
-                        component={Input}
-                        name={'rememberMe'}
-                        type="checkbox"
-                        checked={true}/>
-                    <span>Remember me</span>
-                </div>
-                {props.isCaptcha &&
-                <div>
-                    <div>
-                        <img src={props.urlCaptcha} alt=""/>
-                        <Field component={Input}
-                               name={'captcha'}
-                               validate={[required]}
-                               type="text"
-                               placeholder={'captcha'}/>
-                    </div>
-                </div>}
-                {props.error &&
-                <div className={'formSummaryError'}>
-                    <span>{props.error}</span>
-                </div>
-                }
-                <div>
-                    <button>Login</button>
-                </div>
-            </form>
+
+            <Formik initialValues={{
+                ...INITIAL_FORM_STATE
+            }}
+                    onSubmit={onSubmit}
+                    validationSchema={FORM_VALIDATION}
+
+            >
+                <Form>
+                    <Grid container spacing={2} justifyContent={"center"}>
+                        <Grid item xs={10} md={10}>
+                            <TextFieldsForm
+                                name='email'
+                                label='Email'
+                            />
+                        </Grid>
+                        <Grid item xs={10} md={10}>
+                            <TextFieldsForm
+                                name='password'
+                                label='Password'
+                                type='password'
+                            />
+                        </Grid>
+                        <Grid item xs={10} md={10}>
+                            <CheckboxForm
+                                name='rememberMe'
+                                legend='Remember me'
+                                label='Yes'
+                            />
+                        </Grid>
+
+                        {props.isCaptcha && <React.Fragment>
+                            <Grid item xs={10} md={10}>
+                                <CardActionArea>
+                                    <CardMedia
+                                        component="img"
+                                        alt="Contemplative Reptile"
+                                        height="140"
+                                        image={props.urlCaptcha}
+                                        title="Contemplative Reptile"
+                                    />
+                                </CardActionArea>
+                            </Grid>
+                            <Grid item xs={10} md={10}>
+                                <TextFieldsForm
+                                    name='captcha'
+                                    label='captcha'
+
+                                />
+                            </Grid>
+
+                        </React.Fragment>
+                        }
+                        {/*{props.error &&*/}
+                        {/*<div className={'formSummaryError'}>*/}
+                        {/*    <span>{props.error}</span>*/}
+                        {/*</div>*/}
+                        {/*}*/}
+
+                        <Grid item xs={10} md={8}>
+                            <ButtonSubmit>
+                                Submit Form
+                            </ButtonSubmit>
+                        </Grid>
+                    </Grid>
+                </Form>
+
+            </Formik>
+
+
         </div>
+
     )
 }
 
-const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
+export default LoginForm
 
-export default LoginReduxForm
+

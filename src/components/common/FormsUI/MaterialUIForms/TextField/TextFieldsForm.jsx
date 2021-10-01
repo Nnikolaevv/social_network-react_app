@@ -2,15 +2,15 @@ import React from 'react';
 import {TextField} from "@material-ui/core";
 import {useField} from 'formik';
 
-const TextFieldsFormikMUI = ({name, ...otherProps}) => {
+const TextFieldsForm = ({name, ...otherProps}) => {
 
     const [field, metaData] = useField(name)
 
     const configTextField = {
         ...field,
-        ...otherProps,
         fullWidth: true,
         variant: 'outlined',
+        ...otherProps,
     }
     if (metaData && metaData.touched && metaData.error) {
         configTextField.error = true;
@@ -23,4 +23,4 @@ const TextFieldsFormikMUI = ({name, ...otherProps}) => {
 }
 
 
-export default TextFieldsFormikMUI
+export default TextFieldsForm

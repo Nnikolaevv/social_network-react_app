@@ -18,7 +18,8 @@ const mapStateToProps = (state) => {
         isAuth: state.auth.isAuth,
         errorMessages: state.auth.errorMessages,
         isCaptcha: state.auth.isCaptcha,
-        urlCaptcha: state.auth.urlCaptcha
+        urlCaptcha: state.auth.urlCaptcha,
+        error: state.auth.error
     }
 }
 

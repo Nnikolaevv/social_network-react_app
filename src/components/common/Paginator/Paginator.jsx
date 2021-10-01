@@ -10,14 +10,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Paginator = ({totalItemsCount, pageSize, setPage}) => {
+const Paginator = ({totalItemsCount, pageSize, setPage, currentPage}) => {
     const classes = useStyles()
 
     const pageCount = Math.ceil(totalItemsCount / pageSize);
 
-    const [currentPage, setCurrentPage] = useState(1);
+    const [page, setThisPage] = useState(currentPage);
     const handleChange = (event, value) => {
-        setCurrentPage(value)
+        setThisPage(value)
         setPage(value);
     };
 
@@ -26,7 +26,7 @@ const Paginator = ({totalItemsCount, pageSize, setPage}) => {
             <Pagination count={pageCount}
                         variant="outlined"
                         shape="rounded"
-                        page={currentPage}
+                        page={page}
                         onChange={handleChange}/>
         </div>
 
