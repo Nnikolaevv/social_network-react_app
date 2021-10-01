@@ -2,7 +2,11 @@ import axios from "axios";
 
 
 const baseURL = "https://social-network.samuraijs.com/api/1.0";
-const API_KEY = "8b769d71-9c3b-4a97-8b52-9dc0a31f7331"
+// const API_KEY = "971ae2d5-c366-4658-a81b-8b4913ab7d39"
+const API_KEY = "b80db456-0fc8-4d7e-876f-7e319d342bfe";
+// for lovawog867@bio123.net
+
+
 
 const instanceAxios = axios.create({
     baseURL,

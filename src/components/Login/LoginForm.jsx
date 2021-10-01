@@ -8,8 +8,8 @@ import ButtonSubmit from "../common/FormsUI/MaterialUIForms/ButtonSubmit/ButtonS
 
 
 const INITIAL_FORM_STATE = {
-    email: '',
-    password: '',
+    email: 'lovawog867@bio123.net',
+    password: '1122334455',
     rememberMe: false,
     captcha: '',
 }
@@ -21,7 +21,7 @@ const FORM_VALIDATION = Yup.object().shape({
         .required('Email is required'),
     password: Yup
         .string('Enter your password')
-        .min(8, 'Password should be of minimum 8 characters length')
+        .min(4, 'Password should be of minimum 8 characters length')
         .required('Password is required'),
     // captcha: Yup
     //     .string
@@ -62,6 +62,13 @@ const LoginForm = (props) => {
             >
                 <Form>
                     <Grid container spacing={2} justifyContent={"center"}>
+                        <Grid item>
+                            <Typography variant='h5'
+                                        color="textPrimary">
+                                For test email and password at form!
+                            </Typography>
+
+                        </Grid>
                         <Grid item xs={10} md={10}>
                             <TextFieldsForm
                                 name='email'
@@ -113,7 +120,7 @@ const LoginForm = (props) => {
 
                         <Grid item xs={10} md={8}>
                             <ButtonSubmit>
-                                Submit Form
+                                Login
                             </ButtonSubmit>
                         </Grid>
                     </Grid>
