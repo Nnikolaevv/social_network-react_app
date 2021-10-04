@@ -86203,7 +86203,7 @@ function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_FormsUI_MaterialUIForms_Checkbox_CheckboxForm__ = __webpack_require__(1112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_FormsUI_MaterialUIForms_TextField_TextFieldsForm__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_FormsUI_MaterialUIForms_ButtonSubmit_ButtonSubmit__ = __webpack_require__(1113);
-var INITIAL_FORM_STATE={email:'lovawog867@bio123.net',password:'1122334455',rememberMe:false,captcha:''};var FORM_VALIDATION=__WEBPACK_IMPORTED_MODULE_2_yup__["a" /* object */]().shape({email:__WEBPACK_IMPORTED_MODULE_2_yup__["b" /* string */]('Enter your email').email('Enter a valid email').required('Email is required'),password:__WEBPACK_IMPORTED_MODULE_2_yup__["b" /* string */]('Enter your password').min(4,'Password should be of minimum 8 characters length').required('Password is required')});var LoginForm=function LoginForm(props){var onSubmit=function onSubmit(_ref,_ref2){var email=_ref.email,password=_ref.password,rememberMe=_ref.rememberMe,captcha=_ref.captcha;var setErrors=_ref2.setErrors;props.login(email,password,rememberMe,captcha).then(function(e){props.error&&setErrors({password:props.error||'Wrong pass'});});};// const validateCaptcha = (value) => {
+var INITIAL_FORM_STATE={email:'nexon91@mail.ru',password:'kolkaa311',rememberMe:false,captcha:''};var FORM_VALIDATION=__WEBPACK_IMPORTED_MODULE_2_yup__["a" /* object */]().shape({email:__WEBPACK_IMPORTED_MODULE_2_yup__["b" /* string */]('Enter your email').email('Enter a valid email').required('Email is required'),password:__WEBPACK_IMPORTED_MODULE_2_yup__["b" /* string */]('Enter your password').min(4,'Password should be of minimum 8 characters length').required('Password is required')});var LoginForm=function LoginForm(props){var onSubmit=function onSubmit(_ref,_ref2){var email=_ref.email,password=_ref.password,rememberMe=_ref.rememberMe,captcha=_ref.captcha;var setErrors=_ref2.setErrors;props.login(email,password,rememberMe,captcha).then(function(e){props.error&&setErrors({password:props.error||'Wrong pass'});});};// const validateCaptcha = (value) => {
 //     let error;
 //     if (!value) {
 //         error = 'Required Captcha';
@@ -89680,4 +89680,4 @@ function updateLink (link, options, obj) {
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.a1589d53.js.map
+//# sourceMappingURL=main.3fd12de8.js.map
