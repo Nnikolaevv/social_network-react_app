@@ -64,7 +64,8 @@ const LoginForm = (props) => {
                     <Grid container spacing={2} justifyContent={"center"}>
                         <Grid item>
                             <Typography variant='h5'
-                                        color="textPrimary">
+                                        color='textSecondary'
+                                        style={{color: 'red'}}>
                                 For test email and password at form!
                             </Typography>
 
