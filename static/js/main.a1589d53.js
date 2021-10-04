@@ -11926,7 +11926,7 @@ module.exports = __webpack_require__(515);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(517);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 var baseURL="https://social-network.samuraijs.com/api/1.0";// const API_KEY = "971ae2d5-c366-4658-a81b-8b4913ab7d39"
-var API_KEY="b80db456-0fc8-4d7e-876f-7e319d342bfe";// for lovawog867@bio123.net
+var API_KEY="6416d870-782f-4c02-8be5-f4e126d1e168";// for lovawog867@bio123.net
 var instanceAxios=__WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({baseURL:baseURL,withCredentials:true,headers:{"API-KEY":API_KEY}});var authAPI={authMe:function authMe(){return instanceAxios.get('/auth/me').then(function(response){return response.data;});},login:function login(email,password){var rememberMe=arguments.length>2&&arguments[2]!==undefined?arguments[2]:false;var captcha=arguments[3];return instanceAxios.post('/auth/login',{email:email,password:password,rememberMe:rememberMe,captcha:captcha}).then(function(response){return response.data;});},logout:function logout(){return instanceAxios.delete('/auth/login').then(function(response){return response.data;});},getCaptcha:function getCaptcha(){return instanceAxios.get('/security/get-captcha-url');}};var usersAPI={getUsers:function getUsers(){var currentPage=arguments.length>0&&arguments[0]!==undefined?arguments[0]:1;var pageSize=arguments.length>1&&arguments[1]!==undefined?arguments[1]:5;return instanceAxios.get("/users?page="+currentPage+"&count="+pageSize).then(function(response){return response.data;});},follow:function follow(id){return instanceAxios.post('/follow/'+id,{}).then(function(response){return response.data.resultCode;});},unfollow:function unfollow(id){return instanceAxios.delete('/follow/'+id).then(function(response){return response.data.resultCode;});}};var profileAPI={getProfile:function getProfile(userId){return instanceAxios.get('/profile/'+userId).then(function(response){return response.data;});},getStatus:function getStatus(userId){return instanceAxios.get('/profile/status/'+userId).then(function(response){return response.data;});},updateStatus:function updateStatus(status){return instanceAxios.put('/profile/status',{status:status});},uploadPhoto:function uploadPhoto(file){var formData=new FormData();formData.append('image',file);return instanceAxios.put('/profile/photo',formData,{headers:{'Content-Type':'multipart/form-data'}});},sendProfile:function sendProfile(data){return instanceAxios.put('/profile',data);}};
 
 /***/ }),
@@ -86203,10 +86203,7 @@ function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_FormsUI_MaterialUIForms_Checkbox_CheckboxForm__ = __webpack_require__(1112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_FormsUI_MaterialUIForms_TextField_TextFieldsForm__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_FormsUI_MaterialUIForms_ButtonSubmit_ButtonSubmit__ = __webpack_require__(1113);
-var INITIAL_FORM_STATE={email:'lovawog867@bio123.net',password:'1122334455',rememberMe:false,captcha:''};var FORM_VALIDATION=__WEBPACK_IMPORTED_MODULE_2_yup__["a" /* object */]().shape({email:__WEBPACK_IMPORTED_MODULE_2_yup__["b" /* string */]('Enter your email').email('Enter a valid email').required('Email is required'),password:__WEBPACK_IMPORTED_MODULE_2_yup__["b" /* string */]('Enter your password').min(4,'Password should be of minimum 8 characters length').required('Password is required')// captcha: Yup
-//     .string
-//     .required('Enter captcha'),
-});var LoginForm=function LoginForm(props){var onSubmit=function onSubmit(_ref,_ref2){var email=_ref.email,password=_ref.password,rememberMe=_ref.rememberMe,captcha=_ref.captcha;var setErrors=_ref2.setErrors;props.login(email,password,rememberMe,captcha).then(function(e){props.error&&setErrors({password:props.error||'Wrong pass'});});};// const validateCaptcha = (value) => {
+var INITIAL_FORM_STATE={email:'lovawog867@bio123.net',password:'1122334455',rememberMe:false,captcha:''};var FORM_VALIDATION=__WEBPACK_IMPORTED_MODULE_2_yup__["a" /* object */]().shape({email:__WEBPACK_IMPORTED_MODULE_2_yup__["b" /* string */]('Enter your email').email('Enter a valid email').required('Email is required'),password:__WEBPACK_IMPORTED_MODULE_2_yup__["b" /* string */]('Enter your password').min(4,'Password should be of minimum 8 characters length').required('Password is required')});var LoginForm=function LoginForm(props){var onSubmit=function onSubmit(_ref,_ref2){var email=_ref.email,password=_ref.password,rememberMe=_ref.rememberMe,captcha=_ref.captcha;var setErrors=_ref2.setErrors;props.login(email,password,rememberMe,captcha).then(function(e){props.error&&setErrors({password:props.error||'Wrong pass'});});};// const validateCaptcha = (value) => {
 //     let error;
 //     if (!value) {
 //         error = 'Required Captcha';
@@ -89683,4 +89680,4 @@ function updateLink (link, options, obj) {
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.a8e1c4c3.js.map
+//# sourceMappingURL=main.a1589d53.js.map
