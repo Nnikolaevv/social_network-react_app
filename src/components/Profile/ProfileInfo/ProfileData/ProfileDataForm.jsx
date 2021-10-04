@@ -2,6 +2,7 @@ import React from "react";
 import {Formik, Form} from "formik";
 import TextFieldsForm from "../../../common/FormsUI/MaterialUIForms/TextField/TextFieldsForm";
 import {Button, Grid, TextField} from "@material-ui/core";
+import ButtonSubmit from "../../../common/FormsUI/MaterialUIForms/ButtonSubmit/ButtonSubmit";
 
 
 const ProfileDataForm = (props) => {
@@ -15,8 +16,8 @@ const ProfileDataForm = (props) => {
     }
 
 
-    const onSubmit = () => {
-
+    const onSubmit = (value) => {
+        props.editProfileInfoSave(value)
     }
 
     return (
@@ -71,6 +72,10 @@ const ProfileDataForm = (props) => {
                                 </Grid>
                             )})}
                     </Grid>
+                    {props.isOwner &&
+                    <ButtonSubmit variant="contained"
+                            color="primary"
+                            >{props.editMode && 'Save'}</ButtonSubmit>}
                 </Form>
             </Formik>
     </div>

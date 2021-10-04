@@ -39,20 +39,20 @@ const ProfileInfo = (props) => {
                                           onClickEdit={onClickEdit}
                                           isOwner={props.isOwner}
                                           classes={props.classes}/>
-                          :  <ProfileDataForm profile={props.profile}
-                                              onSubmit={editProfileInfoSave}
-                                              initialValues={props.profile}
-                                              onPhotoSelected={onPhotoSelected}/>
+                    : <ProfileDataForm profile={props.profile}
+                                       editProfileInfoSave={editProfileInfoSave}
+                                       initialValues={props.profile}
+                                       onPhotoSelected={onPhotoSelected}
+                                       onCkickEdit={onClickEdit}
+                                       editMode={editMode}
+                                       isOwner={props.isOwner}
+                    />
                 }
-                {props.isOwner &&
-                <Button variant="contained"
-                        color="primary"
-                        onClick={onClickEdit}>{!editMode ? 'Edit' : 'Save'}</Button>}
+
             </div>
         </div>
     )
 }
-
 
 
 export default ProfileInfo

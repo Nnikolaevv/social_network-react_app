@@ -30,6 +30,9 @@ const ProfileData = (props) => {
                     </Typography>
                 </CardContent>
             </Card>
+            <Button variant="contained"
+                    color="primary"
+                    onClick={props.onClickEdit}>{!props.editMode && 'Edit' }</Button>
         </div>
 
     )

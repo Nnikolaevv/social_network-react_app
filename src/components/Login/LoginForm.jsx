@@ -8,8 +8,8 @@ import ButtonSubmit from "../common/FormsUI/MaterialUIForms/ButtonSubmit/ButtonS
 
 
 const INITIAL_FORM_STATE = {
-    email: 'lovawog867@bio123.net',
-    password: '1122334455',
+    email: 'nexon91@mail.ru',
+    password: 'kolkaa31',
     rememberMe: false,
     captcha: '',
 }
@@ -23,9 +23,6 @@ const FORM_VALIDATION = Yup.object().shape({
         .string('Enter your password')
         .min(4, 'Password should be of minimum 8 characters length')
         .required('Password is required'),
-    // captcha: Yup
-    //     .string
-    //     .required('Enter captcha'),
 });
 
 

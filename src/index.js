@@ -12,16 +12,16 @@ import { ThemeProvider} from "@material-ui/core";
 
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
-        {/*<HashRouter>*/}
+        {/*<BrowserRouter basename={process.env.PUBLIC_URL}>*/}
+        <HashRouter>
             <ThemeProvider theme={theme}>
                 <Provider store={store}>
                     <App/>
                 </Provider>
             </ThemeProvider>
 
-        {/*</HashRouter>*/}
-        </BrowserRouter>
+        </HashRouter>
+        {/*</BrowserRouter>*/}
     </React.StrictMode>,
     document.getElementById('root')
 );

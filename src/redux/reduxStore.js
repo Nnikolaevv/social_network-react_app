@@ -7,6 +7,8 @@ import authReducer from "./Reducers/auth-reducer";
 import thunk from "redux-thunk";
 import { reducer as formReduce } from "redux-form";
 import appReducer from "./Reducers/app-reduce";
+import galleryReducer from "./Reducers/gallery-reducer";
+
 
 const reducers = combineReducers({
     profilePage: profileReducer,
@@ -16,6 +18,7 @@ const reducers = combineReducers({
     auth: authReducer,
     form: formReduce,
     app: appReducer,
+    galleryPage: galleryReducer,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
