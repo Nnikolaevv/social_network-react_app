@@ -12,7 +12,7 @@ const ProfileData = (props) => {
                         <b>Full name</b> : {props.profile.fullName}
                     </Typography>
                     <Typography className={classes.title} color="textPrimary" gutterBottom>
-                        <b>Looking for a job</b> : {props.profile.lookingForAJob ? 'yes' : 'no'}
+                        <b>Looking for a job</b> : {props.profile.lookingForAJob ? 'no' : 'yes'}
                     </Typography>
                     <Typography className={classes.title} color="textPrimary" gutterBottom>
                         <b>About me</b>: {props.profile.aboutMe}

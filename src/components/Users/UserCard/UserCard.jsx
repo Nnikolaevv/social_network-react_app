@@ -1,11 +1,15 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
-import avatar from '../../../assets/img/ava.jpg'
 import {Avatar, Box, Button, Card, CardContent, Typography} from "@material-ui/core";
 
 const UserCard = (props) => {
     const classes = props.classes
     const user = props.user
+
+    const ava = () => {
+        const number = Math.floor(Math.random() * 8)
+        return `https://v4.mui.com/static/images/avatar/${number}.jpg`
+    }
 
     let history = useHistory()
 
@@ -18,7 +22,7 @@ const UserCard = (props) => {
             <Card className={classes.userCardContainer}>
                 <CardContent className={classes.userCard}>
                     <Box className={classes.userCardBox}>
-                        <Avatar src={user.photos.small != null ? user.photos.small : avatar}
+                        <Avatar src={user.photos.small != null ? user.photos.small : ava()}
                                 className={classes.userAvatar}
                                 onClick={() => toProfile(user)}/>
                         <Typography className={classes.userTitle}
@@ -39,7 +43,7 @@ const UserCard = (props) => {
                                                   props.unfollow(user.id)
                                               }}>
                                         Unfollow
-                                        </Button>
+                                    </Button>
                                     : <Button variant="contained"
                                               color="primary"
                                               size="small"
