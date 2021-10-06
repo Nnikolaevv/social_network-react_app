@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
-import {Formik, Form, withFormik} from "formik";
+import React from "react";
+import {Formik, Form} from "formik";
 import * as Yup from 'yup';
-import {Card, CardActionArea, CardContent, CardMedia, Grid, Typography} from "@material-ui/core";
+import {CardActionArea, CardContent, CardMedia, Grid, Typography} from "@material-ui/core";
 import CheckboxForm from "../common/FormsUI/MaterialUIForms/Checkbox/CheckboxForm";
 import TextFieldsForm from "../common/FormsUI/MaterialUIForms/TextField/TextFieldsForm";
 import ButtonSubmit from "../common/FormsUI/MaterialUIForms/ButtonSubmit/ButtonSubmit";
@@ -25,26 +25,32 @@ const FORM_VALIDATION = Yup.object().shape({
         .required('Password is required'),
 });
 
+const FORM_VALIDATION_WITH_CAPTCHA = Yup.object().shape({
+    email: Yup
+        .string('Enter your email')
+        .email('Enter a valid email')
+        .required('Email is required'),
+    password: Yup
+        .string('Enter your password')
+        .min(4, 'Password should be of minimum 4 characters length')
+        .required('Password is required'),
+    captcha: Yup
+        .string('Enter captcha')
+        .min(4, 'Captcha should be of minimum 4 characters length')
+        .required('Captcha is required'),
+});
+
 
 
 const LoginForm = (props) => {
 
     const onSubmit  = ({email, password, rememberMe, captcha}, {  setErrors }) => {
         props.login(email, password, rememberMe, captcha)
-            .then(e => {
-                props.error && setErrors({ password: props.error || 'Wrong pass'})
-            }
-        )
+        //     .then(e => {
+        //         props.error && setErrors({ password: props.error || 'Wrong pass'})
+        //     }
+        // )
     }
-
-    // const validateCaptcha = (value) => {
-    //     let error;
-    //     if (!value) {
-    //         error = 'Required Captcha';
-    //     }
-    //     return error;
-    // }
-
 
 
     return (
@@ -54,18 +60,18 @@ const LoginForm = (props) => {
                 ...INITIAL_FORM_STATE
             }}
                     onSubmit={onSubmit}
-                    validationSchema={FORM_VALIDATION}
-
+                    validationSchema={!props.isCaptcha ? FORM_VALIDATION
+                                                       : FORM_VALIDATION_WITH_CAPTCHA
+                    }
             >
                 <Form>
                     <Grid container spacing={2} justifyContent={"center"}>
                         <Grid item>
-                            <Typography variant='h5'
+                            <Typography variant='h6'
                                         color='textSecondary'
-                                        style={{color: 'red'}}>
+                                        style={{color: 'green', textAlign: 'center'}}>
                                 For test email and password at form!
                             </Typography>
-
                         </Grid>
                         <Grid item xs={10} md={10}>
                             <TextFieldsForm
@@ -87,8 +93,8 @@ const LoginForm = (props) => {
                                 label='Yes'
                             />
                         </Grid>
-
-                        {props.isCaptcha && <React.Fragment>
+                        {props.isCaptcha &&
+                        <React.Fragment>
                             <Grid item xs={10} md={10}>
                                 <CardActionArea>
                                     <CardMedia
@@ -103,18 +109,23 @@ const LoginForm = (props) => {
                             <Grid item xs={10} md={10}>
                                 <TextFieldsForm
                                     name='captcha'
-                                    label='captcha'
-
+                                    label='Captcha'
                                 />
                             </Grid>
-
                         </React.Fragment>
                         }
-                        {/*{props.error &&*/}
-                        {/*<div className={'formSummaryError'}>*/}
-                        {/*    <span>{props.error}</span>*/}
-                        {/*</div>*/}
-                        {/*}*/}
+                        {props.error &&
+                        <React.Fragment>
+                            <Grid item xs={10} md={10}>
+                                 <Typography variant='h6'
+                                            color='primary'
+                                             style={{color: 'red', textAlign: 'center'}}
+                                            >
+                                     {props.error}
+                                 </Typography>
+                            </Grid>
+                        </React.Fragment>
+                        }
 
                         <Grid item xs={10} md={8}>
                             <ButtonSubmit>
@@ -123,10 +134,7 @@ const LoginForm = (props) => {
                         </Grid>
                     </Grid>
                 </Form>
-
             </Formik>
-
-
         </div>
 
     )

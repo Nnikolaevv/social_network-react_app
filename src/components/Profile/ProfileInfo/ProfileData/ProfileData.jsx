@@ -6,8 +6,8 @@ const ProfileData = (props) => {
     const classes = props.classes
     return (
         <div>
-            <Card className={classes.profileInfo}>
-                <CardContent>
+            <Card >
+                <CardContent className={classes.profileInfoCard}>
                     <Typography className={classes.title} color="textPrimary" gutterBottom>
                         <b>Full name</b> : {props.profile.fullName}
                     </Typography>
@@ -18,7 +18,8 @@ const ProfileData = (props) => {
                         <b>About me</b>: {props.profile.aboutMe}
                     </Typography>
                 </CardContent>
-
+            </Card>
+            <Card>
                 <CardContent>
                     <Typography className={classes.title} color="textPrimary" gutterBottom>
                         <b>Contacts</b>: {Object.keys(props.profile.contacts).map(key => {
@@ -30,6 +31,7 @@ const ProfileData = (props) => {
                     </Typography>
                 </CardContent>
             </Card>
+
             <Button variant="contained"
                     color="primary"
                     onClick={props.onClickEdit}>{!props.editMode && 'Edit' }</Button>

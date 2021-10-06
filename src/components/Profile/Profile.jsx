@@ -14,8 +14,8 @@ import {
 import ProfileStatus from "./ProfileInfo/ProfileStatus";
 import avatar from "../../assets/img/ava.jpg";
 import Preloader from "../common/Preloader/Preloader";
-import Contact from "./ProfileInfo/Contact/Contact";
-import TextFieldsForm from "../common/FormsUI/MaterialUIForms/TextField/TextFieldsForm";
+import Feed from "../Feed/Feed";
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -50,6 +50,26 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center",
         justifyContent: "center"
     },
+    profileInfoContainer: {
+        alignItems: 'center',
+        padding: theme.spacing(2)
+    },
+    heading: {
+        fontSize: theme.typography.pxToRem(15),
+        flexBasis: '33.33%',
+        flexShrink: 0,
+    },
+    secondaryHeading: {
+        fontSize: theme.typography.pxToRem(15),
+        color: theme.palette.text.secondary,
+    },
+    profileAccordion: {
+        paddingLeft: theme.spacing(2),
+        width: theme.spacing(50)
+    },
+    profileInfoCard: {
+        width: '100%',
+    },
     profileInfoName: {},
     profileInfoDeck: {}
 }))
@@ -78,7 +98,6 @@ const Profile = (props) => {
                      src={props.profile.photos.large || avatar}
                 />
 
-
             </div>
             <div className={classes.about}>
                 <Typography variant='h4' className={classes.profileInfoName}>
@@ -90,7 +109,7 @@ const Profile = (props) => {
             </div>
 
             <ProfileInfo {...props} classes={classes}/>
-
+            <Feed />
             {/*<MyPostsContainer/>*/}
         </div>
 

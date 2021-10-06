@@ -2,6 +2,7 @@ import React from "react";
 import RightBarAfterLogin from "./RightBarAfterLogin/RightBarAfterLogin";
 import RightBarBeforeLogin from "./RightBarBeforeLogin/RightBarBeforeLogin";
 import {Container, makeStyles} from "@material-ui/core";
+import {useHistory} from "react-router-dom";
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,6 +29,7 @@ const useStyles = makeStyles(theme => ({
 
 const RightBar = (props) => {
     const classes = useStyles()
+
 
     return (
         <div className={classes.container}>

@@ -5,7 +5,9 @@ import FeedPost from "./FeedPost/FeedPost";
 
 
 const useStyles = makeStyles(theme => ({
-
+    container: {
+        padding: theme.spacing(3)
+    }
 }))
 
 const Feed = (props) => {

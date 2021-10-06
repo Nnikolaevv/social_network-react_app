@@ -1,6 +1,8 @@
 import React from "react";
 import {compose} from "redux";
 import Gallery from "./Gallery";
+import {connect} from "react-redux";
+
 
 const GalleryContainer = (props) => {
 
@@ -19,5 +21,6 @@ const mapStateToProps = (state) => {
 }
 
 
-export default compose(mapStateToProps)(GalleryContainer)
+export default compose(
+    connect(mapStateToProps))(GalleryContainer)
 

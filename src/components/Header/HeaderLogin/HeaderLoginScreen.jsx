@@ -53,7 +53,7 @@ const HeaderLoginScreen = (props) => {
             </Badge>
             <Avatar className={classes.avatar}
                     alt="Remy Sharp"
-                    src={''}
+                    src={props.ava && props.ava.photos.large}
                     aria-controls="simple-menu"
                     aria-haspopup="true"
                     onClick={handleClick}

@@ -1,10 +1,18 @@
 import React from "react";
 import {Avatar, Divider, ImageList, ImageListItem, Link, makeStyles, Typography} from "@material-ui/core";
 import {AvatarGroup} from "@material-ui/lab";
+import {useHistory} from "react-router-dom";
 
 
 const RightBarAfterLogin = (props) => {
     const classes = props.classes
+
+    let history = useHistory();
+
+
+    const toGallery = () => {
+        history.push('/gallery')
+    }
 
     return (
         <React.Fragment>
@@ -23,7 +31,9 @@ const RightBarAfterLogin = (props) => {
                 <Avatar alt="Trevor Henderson" src="https://v4.mui.com/static/images/avatar/8.jpg"/>
             </AvatarGroup>
             <Typography className={classes.title}
-                        gutterBottom>
+                        gutterBottom
+                        // onClick={toGallery}
+            >
                 Gallery
             </Typography>
             <ImageList rowHeight={100} style={{marginBottom: 20}} cols={2}>

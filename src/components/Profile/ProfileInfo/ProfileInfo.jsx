@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 import Preloader from "../../common/Preloader/Preloader";
-import avatar from '../../../assets/img/ava.jpg'
-import ProfileStatus from "./ProfileStatus";
 import ProfileData from "./ProfileData/ProfileData";
-import ProfileDataFormRedux from "./ProfileData/ProfileDataForm";
-import {Button} from "@material-ui/core";
 import ProfileDataForm from "./ProfileData/ProfileDataForm";
+import {Accordion, AccordionDetails, AccordionSummary, Typography} from "@material-ui/core";
+import ExpandMore from '@material-ui/icons/ExpandMore'
 
 
 const ProfileInfo = (props) => {
+    const classes = props.classes
+
     if (!props.profile) {
         return <Preloader/>
     }
@@ -29,27 +29,48 @@ const ProfileInfo = (props) => {
         if (e.target.files.length) {
             props.savePhoto(e.target.files[0])
         }
-
     }
+
+    const [expanded, setExpanded] = useState(false);
+
+    const handleChange = (panel) => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
+    }
+
     return (
-        <div className='profileInfo'>
-            <div className='descriptionBlock'>
+        <div className={classes.profileInfoContainer}>
 
-                {!editMode ? <ProfileData profile={props.profile}
-                                          onClickEdit={onClickEdit}
-                                          isOwner={props.isOwner}
-                                          classes={props.classes}/>
-                    : <ProfileDataForm profile={props.profile}
-                                       editProfileInfoSave={editProfileInfoSave}
-                                       initialValues={props.profile}
-                                       onPhotoSelected={onPhotoSelected}
-                                       onCkickEdit={onClickEdit}
-                                       editMode={editMode}
-                                       isOwner={props.isOwner}
-                    />
-                }
-
+            <div className={classes.profileAccordion}>
+                <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMore />}
+                        aria-controls="panel1bh-content"
+                        id="panel1bh-header"
+                    >
+                        <Typography className={classes.heading}>User info</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Typography>
+                            {!editMode ? <ProfileData profile={props.profile}
+                                                      onClickEdit={onClickEdit}
+                                                      isOwner={props.isOwner}
+                                                      classes={props.classes}/>
+                                : <ProfileDataForm profile={props.profile}
+                                                   editProfileInfoSave={editProfileInfoSave}
+                                                   initialValues={props.profile}
+                                                   onPhotoSelected={onPhotoSelected}
+                                                   onCkickEdit={onClickEdit}
+                                                   editMode={editMode}
+                                                   isOwner={props.isOwner}
+                                />
+                            }
+                        </Typography>
+                    </AccordionDetails>
+                </Accordion>
             </div>
+
+
+
         </div>
     )
 }

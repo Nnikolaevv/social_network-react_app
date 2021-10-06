@@ -95,7 +95,7 @@ const Header = (props) => {
                                 classes={classes}
                                 onSetOpenClick={onSetOpenClick}
                                 logout={props.logout}
-                                avatar={props.photos}/>
+                                ava={props.ava}/>
                             : <HeaderLogoutScreen />
                         }
                     </Toolbar>

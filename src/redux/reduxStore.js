@@ -10,6 +10,7 @@ import appReducer from "./Reducers/app-reduce";
 import galleryReducer from "./Reducers/gallery-reducer";
 
 
+
 const reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,

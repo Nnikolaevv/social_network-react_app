@@ -10,6 +10,7 @@ import RightBarContainer from "./components/RightBar/RightBarContainer";
 import AddBar from "./components/AddBar/AddBar";
 import LeftBar from "./components/LeftBar/LeftBar";
 import BackdropWindow from "./components/common/BackDrop/BackDrop";
+import RightBarComponentsWithSR from "./components/RightbarComponentWithSR/RightBarComponentWithSR";
 
 
 const useStyles = makeStyles(theme => ({
@@ -45,7 +46,7 @@ const App = (props) => {
                         <MainComponentsWithSR/>
                     </Grid>
                     <Grid item sm={3} className={classes.rightBar}>
-                        <RightBarContainer/>
+                        <RightBarComponentsWithSR/>
                     </Grid>
                     <AddBar/>
                 </Grid>

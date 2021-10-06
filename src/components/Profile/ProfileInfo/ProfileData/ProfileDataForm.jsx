@@ -38,27 +38,30 @@ const ProfileDataForm = (props) => {
                         <Grid item xs={8}>
                             <TextField name='file'
                                        type={'file'}
-                                       variant='outlined'
                                        onChange={props.onPhotoSelected} />
                         </Grid>
 
                         <Grid item xs={8}>
                             <TextFieldsForm name='fullName'
-                                            label='Full name'/>
+                                            label='Full name'
+                                            variant='standard'/>
                         </Grid>
                         <Grid item xs={8}>
                             <TextFieldsForm name='lockingForAJob'
-                                            label='Locking for a job'/>
+                                            label='Locking for a job'
+                                            variant='standard'/>
                         </Grid>
                         <Grid item xs={8}>
                             <TextFieldsForm as='textarea'
                                             name='lookingForAJobDescription'
-                                            label='Full name'/>
+                                            label='Full name'
+                                            variant='standard'/>
                         </Grid>
                         <Grid item xs={8}>
                             <TextFieldsForm as='textarea'
                                             name='aboutMe'
-                                            label='About me'/>
+                                            label='About me'
+                                            variant='standard'/>
                         </Grid>
 
 
@@ -67,7 +70,8 @@ const ProfileDataForm = (props) => {
                                 <Grid item>
                                       <TextFieldsForm key={key}
                                                       name={key}
-                                                      label={key}/>
+                                                      label={key}
+                                                      variant='standard'/>
 
                                 </Grid>
                             )})}

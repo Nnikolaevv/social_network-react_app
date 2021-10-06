@@ -6,6 +6,7 @@ import LoginContainer from "../Login/LoginContainer";
 import Feed from "../Feed/Feed";
 import {makeStyles} from "@material-ui/core";
 import Preloader from "../common/Preloader/Preloader";
+import GalleryContainer from "../Gallery/GalleryContainer";
 const DialogsContainer = React.lazy(() => import("../Dialogs/DialogsContainer"));
 
 const useStyles = makeStyles(theme => ({
@@ -44,6 +45,10 @@ const MainComponentsWithSR = (props) => {
 
                     <Route path={'/feed'}>
                         <Feed/>
+                    </Route>
+
+                    <Route path={'/gallery'}>
+                        <GalleryContainer/>
                     </Route>
 
                     <Route path={'*'}>
