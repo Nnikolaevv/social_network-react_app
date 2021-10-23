@@ -48,7 +48,7 @@ const App = (props) => {
                     <Grid item sm={3} className={classes.rightBar}>
                         <RightBarComponentsWithSR/>
                     </Grid>
-                    <AddBar/>
+                    {/*<AddBar/>*/}
                 </Grid>
             </Container>
         </div>

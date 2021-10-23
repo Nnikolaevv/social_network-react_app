@@ -8,12 +8,8 @@ import ExpandMore from '@material-ui/icons/ExpandMore'
 
 const ProfileInfo = (props) => {
     const classes = props.classes
-
-    if (!props.profile) {
-        return <Preloader/>
-    }
-
     const [editMode, setEditMode] = useState(false);
+    const [expanded, setExpanded] = useState(false);
 
     const onClickEdit = () => {
         setEditMode(!editMode)
@@ -31,10 +27,12 @@ const ProfileInfo = (props) => {
         }
     }
 
-    const [expanded, setExpanded] = useState(false);
-
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
+    }
+
+    if (!props.profile) {
+        return <Preloader/>
     }
 
     return (

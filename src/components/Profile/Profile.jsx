@@ -76,6 +76,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const Profile = (props) => {
+    const classes = useStyles();
     if (!props.profile) {
         return <Preloader/>
     }
@@ -87,7 +88,7 @@ const Profile = (props) => {
     }
 
 
-    const classes = useStyles();
+
     return (
         <div className={classes.container}>
             <div className={classes.cover}>
@@ -97,7 +98,6 @@ const Profile = (props) => {
                 <img className={classes.avatar}
                      src={props.profile.photos.large || avatar}
                 />
-
             </div>
             <div className={classes.about}>
                 <Typography variant='h4' className={classes.profileInfoName}>
@@ -107,12 +107,10 @@ const Profile = (props) => {
                     <ProfileStatus {...props}/>
                 </Typography>
             </div>
-
             <ProfileInfo {...props} classes={classes}/>
             <Feed />
             {/*<MyPostsContainer/>*/}
         </div>
-
     )
 }
 
