@@ -34,7 +34,6 @@ const useStyles = makeStyles(theme => ({
 const Login = (props) => {
     const classes = useStyles()
 
-
     if (props.isAuth) {
         return <Redirect to={'/profile'} />
     }
@@ -51,7 +50,6 @@ const Login = (props) => {
                     <LoginForm {...props} classes={classes}/>
             </CardContent>
         </Card>
-
        </div>
     )
 }

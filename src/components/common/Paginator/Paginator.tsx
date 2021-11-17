@@ -10,13 +10,20 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Paginator = ({totalItemsCount, pageSize, setPage, currentPage}) => {
+type PropsType = {
+    totalItemsCount: number
+    pageSize: number
+    setPage: (value: number) => void
+    currentPage: number
+}
+
+const Paginator: React.FC<PropsType> = ({totalItemsCount, pageSize, setPage, currentPage}) => {
     const classes = useStyles()
 
     const pageCount = Math.ceil(totalItemsCount / pageSize);
 
     const [page, setThisPage] = useState(currentPage);
-    const handleChange = (event, value) => {
+    const handleChange = (event: any, value: number) => {
         setThisPage(value)
         setPage(value);
     };
@@ -29,8 +36,6 @@ const Paginator = ({totalItemsCount, pageSize, setPage, currentPage}) => {
                         page={page}
                         onChange={handleChange}/>
         </div>
-
-
     )
 }
 

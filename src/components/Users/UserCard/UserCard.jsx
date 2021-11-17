@@ -1,15 +1,16 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
 import {Avatar, Box, Button, Card, CardContent, Typography} from "@material-ui/core";
 
 const UserCard = (props) => {
     const classes = props.classes
     const user = props.user
+    const [number, setNumber] = useState(1)
 
-    const ava = () => {
-        const number = Math.floor(Math.random() * 8)
-        return `https://v4.mui.com/static/images/avatar/${number}.jpg`
-    }
+    useEffect(() => {
+        setNumber(Math.floor(Math.random() * 7) + 1)
+    }, [])
+
 
     let history = useHistory()
 
@@ -22,7 +23,8 @@ const UserCard = (props) => {
             <Card className={classes.userCardContainer}>
                 <CardContent className={classes.userCard}>
                     <Box className={classes.userCardBox}>
-                        <Avatar src={user.photos.small != null ? user.photos.small : ava()}
+                        <Avatar src={user.photos.large ||
+                            `https://v4.mui.com/static/images/avatar/${number}.jpg`}
                                 className={classes.userAvatar}
                                 onClick={() => toProfile(user)}/>
                         <Typography className={classes.userTitle}

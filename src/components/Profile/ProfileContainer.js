@@ -2,11 +2,11 @@ import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
+    actions,
     getProfile,
     getStatus,
     savePhoto,
     saveProfile,
-    setUserProfile,
     updateStatus
 } from "../../redux/Reducers/profile-reducer";
 import {withRouter} from "react-router-dom";
@@ -48,6 +48,7 @@ const mapStateToProps = (state) => {
     }
 }
 
+const {setUserProfile} = actions
 
 export default compose(
     withAuthRedirect,

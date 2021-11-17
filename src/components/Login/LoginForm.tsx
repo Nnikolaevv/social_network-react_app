@@ -1,13 +1,19 @@
-import React from "react";
+import React, {FC} from "react";
 import {Formik, Form} from "formik";
 import * as Yup from 'yup';
-import {CardActionArea, CardContent, CardMedia, Grid, Typography} from "@material-ui/core";
+import {CardActionArea, CardMedia, Grid, Typography} from "@material-ui/core";
 import CheckboxForm from "../common/FormsUI/MaterialUIForms/Checkbox/CheckboxForm";
 import TextFieldsForm from "../common/FormsUI/MaterialUIForms/TextField/TextFieldsForm";
 import ButtonSubmit from "../common/FormsUI/MaterialUIForms/ButtonSubmit/ButtonSubmit";
 
+type FormikType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha: string
+}
 
-const INITIAL_FORM_STATE = {
+const INITIAL_FORM_STATE: FormikType = {
     email: 'nexon91@mail.ru',
     password: 'kolkaa31',
     rememberMe: false,
@@ -16,35 +22,45 @@ const INITIAL_FORM_STATE = {
 
 const FORM_VALIDATION = Yup.object().shape({
     email: Yup
-        .string('Enter your email')
+        .string()
         .email('Enter a valid email')
-        .required('Email is required'),
+        .required('Enter your email'),
     password: Yup
-        .string('Enter your password')
+        .string()
         .min(4, 'Password should be of minimum 8 characters length')
-        .required('Password is required'),
+        .required('Enter your password'),
 });
 
 const FORM_VALIDATION_WITH_CAPTCHA = Yup.object().shape({
     email: Yup
-        .string('Enter your email')
+        .string()
         .email('Enter a valid email')
-        .required('Email is required'),
+        .required('Enter your email'),
     password: Yup
-        .string('Enter your password')
+        .string()
         .min(4, 'Password should be of minimum 4 characters length')
-        .required('Password is required'),
+        .required('Enter your password'),
     captcha: Yup
-        .string('Enter captcha')
+        .string()
         .min(4, 'Captcha should be of minimum 4 characters length')
-        .required('Captcha is required'),
+        .required('Enter captcha'),
 });
 
+type PropsType = {
+    isAuth: boolean
+    errorMessage: string | null
+    isCaptcha: boolean
+    urlCaptcha: string | null
+    error: string | null
+    login: (email: string, password: string, rememberMe: boolean, captcha: string) => void
+}
 
 
-const LoginForm = (props) => {
 
-    const onSubmit  = ({email, password, rememberMe, captcha}, {  setErrors }) => {
+
+const LoginForm: FC<PropsType> = (props) => {
+
+    const onSubmit  = ({email, password, rememberMe, captcha}: FormikType, {  setErrors }) => {
         props.login(email, password, rememberMe, captcha)
         //     .then(e => {
         //         props.error && setErrors({ password: props.error || 'Wrong pass'})
@@ -55,7 +71,6 @@ const LoginForm = (props) => {
 
     return (
         <div>
-
             <Formik initialValues={{
                 ...INITIAL_FORM_STATE
             }}
@@ -94,7 +109,7 @@ const LoginForm = (props) => {
                             />
                         </Grid>
                         {props.isCaptcha &&
-                        <React.Fragment>
+                        <>
                             <Grid item xs={10} md={10}>
                                 <CardActionArea>
                                     <CardMedia
@@ -112,10 +127,9 @@ const LoginForm = (props) => {
                                     label='Captcha'
                                 />
                             </Grid>
-                        </React.Fragment>
+                        </>
                         }
                         {props.error &&
-                        <React.Fragment>
                             <Grid item xs={10} md={10}>
                                  <Typography variant='h6'
                                             color='primary'
@@ -124,9 +138,7 @@ const LoginForm = (props) => {
                                      {props.error}
                                  </Typography>
                             </Grid>
-                        </React.Fragment>
                         }
-
                         <Grid item xs={10} md={8}>
                             <ButtonSubmit>
                                 Login
@@ -136,7 +148,6 @@ const LoginForm = (props) => {
                 </Form>
             </Formik>
         </div>
-
     )
 }
 

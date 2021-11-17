@@ -36,7 +36,7 @@ const MainComponentsWithSR = (props) => {
                     </Route>
 
                     <Route path={'/users'}>
-                        <UsersContainer/>
+                        <UsersContainer title={'Users'}/>
                     </Route>
 
                     <Route path={'/login'}>
