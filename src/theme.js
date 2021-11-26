@@ -1,6 +1,7 @@
 import {createTheme} from "@material-ui/core";
 import {blue, grey} from "@material-ui/core/colors";
 
+
 export const theme = createTheme({
     palette: {
         primary: {
@@ -16,7 +17,6 @@ export const theme = createTheme({
     breakpoints: {
         values: {
             xs: 0,
-            xss: 400,
             sm: 660,
             md: 960,
             lg: 1280,

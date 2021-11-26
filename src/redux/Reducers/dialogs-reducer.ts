@@ -1,17 +1,17 @@
 import {InferActionsTypes} from "../reduxStore";
 
-type DialogType = {
+export type DialogType = {
     id: number
     name: string
     avatarImg: string
 }
 
-type MessageType = {
+export type MessageType = {
     id: number
     message: string
 }
 
-let initialState = {
+const initialState = {
     dialogs: [
         {
             id: 1,
@@ -47,7 +47,6 @@ let initialState = {
         {id: 4, message: 'Byu Byu'},
     ] as Array<MessageType>,
 }
-
 type InitialStateType = typeof initialState
 
 const dialogsReducer = (state = initialState, action: ActionTypes): InitialStateType => {

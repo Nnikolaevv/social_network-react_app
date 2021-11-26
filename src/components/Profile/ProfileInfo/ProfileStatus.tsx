@@ -6,14 +6,14 @@ type PropsType = {
     updateStatus: (status: string) => void
 }
 
-const ProfileStatus: FC<PropsType> = (props) => {
+const ProfileStatus: FC<PropsType> = ({status, updateStatus}) => {
 
     const [editMode, setEditMode] = useState<boolean>(false);
-    const [status, setStatus] = useState<string>(props.status);
+    const [statusMsg, setStatusMsg] = useState<string>(status);
 
     useEffect(() => {
-        setStatus(props.status);
-    }, [props.status])
+        setStatusMsg(status);
+    }, [status])
 
     const activeEditMode = () => {
         setEditMode(true)
@@ -21,18 +21,18 @@ const ProfileStatus: FC<PropsType> = (props) => {
 
     const deActiveEditMode = () => {
         setEditMode(false);
-        props.updateStatus(status)
+        updateStatus(statusMsg)
     };
 
     const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
-        setStatus(e.target.value)
+        setStatusMsg(e.target.value)
     };
 
     return (
         <div>
             {!editMode &&
             <div>
-                <Typography onDoubleClick={activeEditMode}>{props.status || "NO STATUS"}</Typography>
+                <Typography onDoubleClick={activeEditMode}>{statusMsg || "NO STATUS"}</Typography>
             </div>
             }
             {editMode &&
@@ -40,7 +40,7 @@ const ProfileStatus: FC<PropsType> = (props) => {
                 <TextField
                     onBlur={deActiveEditMode}
                     autoFocus={true}
-                    value={status}
+                    value={statusMsg}
                     onChange={onChangeStatus}/>
             </div>
             }

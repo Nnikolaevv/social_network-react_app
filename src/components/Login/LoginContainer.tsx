@@ -7,8 +7,8 @@ import {AppStateType} from "../../redux/reduxStore";
 
 type MapStateToPropsType = {
     isAuth: boolean
-    errorMessage: string | null
     isCaptcha: boolean
+    errorMessage: string | null
     urlCaptcha: string | null
     error: string | null
 }
@@ -20,11 +20,11 @@ type MapDispatchToPropsType = {
 const LoginContainer: FC<MapStateToPropsType & MapDispatchToPropsType> = (props) => {
     return (
         <Login isAuth={props.isAuth}
-               errorMessage={props.errorMessage}
                isCaptcha={props.isCaptcha}
                urlCaptcha={props.urlCaptcha}
                error={props.error}
                login={props.login}
+               errorMessage={props.errorMessage}
         />
     )
 }

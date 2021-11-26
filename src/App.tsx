@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {ComponentType, FC, useEffect} from "react";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {initial} from "./redux/Reducers/app-reduce";
@@ -11,6 +11,7 @@ import AddBar from "./components/AddBar/AddBar";
 import LeftBar from "./components/LeftBar/LeftBar";
 import BackdropWindow from "./components/common/BackDrop/BackDrop";
 import RightBarComponentsWithSR from "./components/RightbarComponentWithSR/RightBarComponentWithSR";
+import {AppStateType} from "./redux/reduxStore";
 
 
 const useStyles = makeStyles(theme => ({
@@ -25,14 +26,20 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const App = (props) => {
+type PropsType = {
+    isInit: boolean
+    initial: () => void
+}
+
+
+const App: FC<PropsType> = ({isInit, initial}) => {
     const classes = useStyles()
 
     useEffect(() => {
-        props.initial()
+        initial()
     })
 
-    if (!props.isInit) return <BackdropWindow />
+    if (!isInit) return <BackdropWindow />
 
     return (
         <div>
@@ -56,13 +63,13 @@ const App = (props) => {
     );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         isInit: state.app.isInit
     }
 }
 
-export default compose(
+export default compose<ComponentType>(
     connect(mapStateToProps, {initial})
 )(App)
 

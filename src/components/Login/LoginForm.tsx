@@ -56,12 +56,10 @@ type PropsType = {
 }
 
 
+const LoginForm: FC<PropsType> = ({isAuth, errorMessage, isCaptcha, urlCaptcha, error, login}) => {
 
-
-const LoginForm: FC<PropsType> = (props) => {
-
-    const onSubmit  = ({email, password, rememberMe, captcha}: FormikType, {  setErrors }) => {
-        props.login(email, password, rememberMe, captcha)
+    const onSubmit = ({email, password, rememberMe, captcha}: FormikType, {setErrors}: any) => {
+        login(email, password, rememberMe, captcha)
         //     .then(e => {
         //         props.error && setErrors({ password: props.error || 'Wrong pass'})
         //     }
@@ -75,8 +73,8 @@ const LoginForm: FC<PropsType> = (props) => {
                 ...INITIAL_FORM_STATE
             }}
                     onSubmit={onSubmit}
-                    validationSchema={!props.isCaptcha ? FORM_VALIDATION
-                                                       : FORM_VALIDATION_WITH_CAPTCHA
+                    validationSchema={!isCaptcha ? FORM_VALIDATION
+                        : FORM_VALIDATION_WITH_CAPTCHA
                     }
             >
                 <Form>
@@ -108,7 +106,7 @@ const LoginForm: FC<PropsType> = (props) => {
                                 label='Yes'
                             />
                         </Grid>
-                        {props.isCaptcha &&
+                        {isCaptcha &&
                         <>
                             <Grid item xs={10} md={10}>
                                 <CardActionArea>
@@ -116,7 +114,7 @@ const LoginForm: FC<PropsType> = (props) => {
                                         component="img"
                                         alt="Contemplative Reptile"
                                         height="140"
-                                        image={props.urlCaptcha}
+                                        image={urlCaptcha}
                                         title="Contemplative Reptile"
                                     />
                                 </CardActionArea>
@@ -129,15 +127,15 @@ const LoginForm: FC<PropsType> = (props) => {
                             </Grid>
                         </>
                         }
-                        {props.error &&
-                            <Grid item xs={10} md={10}>
-                                 <Typography variant='h6'
-                                            color='primary'
-                                             style={{color: 'red', textAlign: 'center'}}
-                                            >
-                                     {props.error}
-                                 </Typography>
-                            </Grid>
+                        {error &&
+                        <Grid item xs={10} md={10}>
+                            <Typography variant='h6'
+                                        color='primary'
+                                        style={{color: 'red', textAlign: 'center'}}
+                            >
+                                {error}
+                            </Typography>
+                        </Grid>
                         }
                         <Grid item xs={10} md={8}>
                             <ButtonSubmit>
